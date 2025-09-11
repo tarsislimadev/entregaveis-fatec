@@ -1,0 +1,7 @@
+services:
+  gestao-de-projetos-aula-4:
+    build: './projetos/gestao-de-projetos-ageis/aula-4/'
+    ports:
+      - '8080:8080'
+    volumes:
+      - './projetos/gestao-de-projetos-ageis/aula-4/:/app/'
