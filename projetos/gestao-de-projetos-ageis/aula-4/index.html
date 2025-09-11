@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Mario World (versão GTA)</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #000;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+
+        #gameContainer {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        #ui {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        #hud {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: white;
+            font-size: 18px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        #healthBar {
+            width: 200px;
+            height: 20px;
+            background: rgba(255, 0, 0, 0.3);
+            border: 2px solid white;
+            margin-bottom: 10px;
+        }
+
+        #healthFill {
+            height: 100%;
+            background: linear-gradient(90deg, #ff0000, #ffff00, #00ff00);
+            width: 100%;
+            transition: width 0.3s ease;
+        }
+
+        #weaponInfo {
+            margin-top: 10px;
+        }
+
+        #instructions {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: white;
+            font-size: 14px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        #gameOver {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            display: none;
+        }
+
+        #loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 24px;
+        }
+    </style>
+    <script type="importmap">
+        {
+          "imports": {
+            "three": "https://unpkg.com/three@0.161.0/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.161.0/examples/jsm/"
+          }
+        }
+    </script>
+</head>
+
+<body>
+    <div id="gameContainer">
+        <div id="loading">Carregando jogo...</div>
+
+        <div id="ui">
+            <div id="hud">
+                <div id="healthBar">
+                    <div id="healthFill"></div>
+                </div>
+                <div>Vida: <span id="healthValue">100</span></div>
+                <div id="weaponInfo">Arma: <span id="currentWeapon">Pistola</span></div>
+                <div>Munição: <span id="ammo">30</span></div>
+                <div>Objetivo: Derrotar a gang rival</div>
+            </div>
+
+            <div id="instructions">
+                WASD - Mover | Espaço - Pular | Clique - Atirar | R - Recarregar
+            </div>
+
+            <div id="gameOver">
+                <h2 id="gameOverTitle">Game Over</h2>
+                <p id="gameOverMessage">Você foi derrotado!</p>
+                <button onclick="restartGame()">Reiniciar</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="js/main.js"></script>
+</body>
+
+</html>
