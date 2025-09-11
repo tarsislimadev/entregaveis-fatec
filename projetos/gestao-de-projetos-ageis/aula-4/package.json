@@ -1,0 +1,19 @@
+{
+  "name": "super-mario-gta",
+  "version": "1.0.0",
+  "description": "Super Mario World (versão GTA) - Three.js Game",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx http-server . -p 8080 -o",
+    "dev": "npx http-server . -p 8080 -o"
+  },
+  "dependencies": {
+    "three": "^0.158.0"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  },
+  "keywords": ["threejs", "game", "mario", "gta"],
+  "author": "FATEC Student",
+  "license": "MIT"
+}
