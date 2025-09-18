@@ -1,0 +1,16 @@
+{
+  "name": "cuphead-rio-game",
+  "version": "1.0.0",
+  "description": "CupHead Rio de Janeiro - A Pixi.js 2D Game",
+  "type": "module",
+  "main": "js/game.js",
+  "scripts": {
+    "dev": "python3 -m http.server 8000",
+    "start": "python3 -m http.server 8000"
+  },
+  "keywords": ["pixi.js", "game", "cuphead", "rio", "2d"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {}
+}
