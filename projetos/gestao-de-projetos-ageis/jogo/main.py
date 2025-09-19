@@ -3,9 +3,8 @@ import random
 import os
 
 # --- 1. CONFIGURAÇÃO INICIAL DO PYGAME ---
-# Inicializa o Pygame e o mixer de áudio
+# Inicializa o Pygame
 pygame.init()
-pygame.mixer.init()
 
 # Define a escala de ampliação
 SCALE_FACTOR = 1.07
@@ -55,41 +54,27 @@ def load_image(path, size=None):
             return pygame.transform.scale(surface, (int(size[0] * SCALE_FACTOR), int(size[1] * SCALE_FACTOR)))
         return surface
 
-# --- NOVA FUNÇÃO: Carrega um arquivo de áudio ---
-def load_sound(path):
-    try:
-        full_path = os.path.join(os.path.dirname(__file__), path)
-        return pygame.mixer.Sound(full_path)
-    except pygame.error:
-        print(f"Erro: Arquivo de áudio '{path}' não encontrado.")
-        return None
 
-# --- Carrega as imagens e áudios do jogo ---
-background_image = load_image(r"imagens\767b1183-4194-4729-a476-4e4a2325a057.png")
+# --- Carrega as imagens do jogo ---
+background_image = load_image("imagens/767b1183-4194-4729-a476-4e4a2325a057.png")
 player_size_orig = (32, 32)
 player_size_scaled = (int(player_size_orig[0] * SCALE_FACTOR), int(player_size_orig[1] * SCALE_FACTOR))
-idle_right_image = load_image(r"imagens\paradodireita.png", player_size_orig)
-idle_left_image = load_image(r"imagens\paradodesquerda.png", player_size_orig)
-run_right_image = load_image(r"imagens\correndodireita.png", player_size_orig)
-run_left_image = load_image(r"imagens\correndoesquerda.png", player_size_orig)
-jump_right_image = load_image(r"imagens\pulandodireita.png", player_size_orig)
-jump_left_image = load_image(r"imagens\pulandosequerda.png", player_size_orig)
+idle_right_image = load_image("imagens/paradodireita.png", player_size_orig)
+idle_left_image = load_image("imagens/paradodesquerda.png", player_size_orig)
+run_right_image = load_image("imagens/correndodireita.png", player_size_orig)
+run_left_image = load_image("imagens/correndoesquerda.png", player_size_orig)
+jump_right_image = load_image("imagens/pulandodireita.png", player_size_orig)
+jump_left_image = load_image("imagens/pulandosequerda.png", player_size_orig)
 enemy_size_orig = (32, 32)
 enemy_size_scaled = (int(enemy_size_orig[0] * SCALE_FACTOR), int(enemy_size_orig[1] * SCALE_FACTOR))
-enemy_right_image = load_image(r"imagens\bichinho_direita.png", enemy_size_orig)
-enemy_left_image = load_image(r"imagens\bichinho_esquerda.png", enemy_size_orig)
-platform_image = load_image(r"imagens\block_platform.png", (100, 20))
-spike_image = load_image(r"imagens\block_spike_out_cima_baixo.png", (100, 20))
+enemy_right_image = load_image("imagens/bichinho_direita.png", enemy_size_orig)
+enemy_left_image = load_image("imagens/bichinho_esquerda.png", enemy_size_orig)
+platform_image = load_image("imagens/block_platform.png", (100, 20))
+spike_image = load_image("imagens/block_spike_out_cima_baixo.png", (100, 20))
 
 # --- NOVA IMAGEM: A plataforma final com o poste ---
-final_platform_image = load_image(r"imagens\final_platform_tall_pole.png", (130, 20))
+final_platform_image = load_image("imagens/final_platform_tall_pole.png", (130, 20))
 
-# --- Carrega os arquivos de áudio ---
-game_music = r"audio\8bit-music-for-game-68698.mp3"
-start_sound = load_sound(r"audio\game-start-317318.mp3")
-coin_sound = load_sound(r"audio\collect-points-190037.mp3")
-death_sound = load_sound(r"audio\videogame-death-sound-43894.mp3")
-# hit_sound = load_sound(r"audio\hit_sound.mp3") # Adiciona um som de dano
 
 # --- 2. CLASSE DO JOGADOR (PLAYER) ---
 class Player(pygame.sprite.Sprite):
@@ -155,8 +140,6 @@ class Player(pygame.sprite.Sprite):
     def take_damage(self):
         if not self.is_invincible:
             self.health -= 1
-            # if hit_sound:
-            #     hit_sound.play()
             self.is_invincible = True
             self.invincible_end_time = pygame.time.get_ticks() + 1000 # 1 segundo de invencibilidade
             
@@ -310,9 +293,6 @@ def main():
     win = False
     death_cause = None
     score = 0
-    
-    # Nova variável para a causa da morte
-    death_cause = None
 
     all_sprites = pygame.sprite.Group()
     platforms = pygame.sprite.Group()
@@ -326,14 +306,6 @@ def main():
     player = Player(100, 600 - 80)
     all_sprites.add(player)
 
-    # --- Toca o som de início do jogo ---
-    if start_sound:
-        pygame.mixer.music.set_volume(0.25)
-        start_sound.play()
-    
-    # --- Toca a música de fundo e a coloca para repetir ---
-    pygame.mixer.music.load(game_music)
-    pygame.mixer.music.play(-1)
 
     # --- DESIGN DO NÍVEL ---
     ground_start = Platform(0, 600 - 40, 500, 40)
@@ -420,7 +392,7 @@ def main():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 exit()
-            if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_UP:
                 player.jump()
 
         keys = pygame.key.get_pressed()
@@ -495,8 +467,6 @@ def main():
 
         hit_coins = pygame.sprite.spritecollide(player, coins, True)
         if hit_coins:
-            if coin_sound:
-                coin_sound.play()
             for coin in hit_coins:
                 score += 1
             
@@ -516,17 +486,16 @@ def main():
         # --- PARTE DE RENDERIZAÇÃO ---
         screen.blit(background_image, (0, 0))
         
-        # Aplica o efeito de piscar quando o jogador está invencível
-        if player.is_invincible and pygame.time.get_ticks() % 200 > 100:
-            # Não desenha o jogador para simular o piscar
-            pass
-        else:
-            # Centraliza a câmera no jogador
-            map_offset_x = player.real_x - (SCREEN_WIDTH // 2)
-            for sprite in all_sprites:
+        # Centraliza a câmera no jogador
+        map_offset_x = player.real_x - (SCREEN_WIDTH // 2)
+        for sprite in all_sprites:
+            if sprite == player:
+                # Aplica o efeito de piscar quando o jogador está invencível
+                if not (player.is_invincible and pygame.time.get_ticks() % 200 > 100):
+                    # Desenha o jogador em uma posição fixa na tela para a câmera
+                    screen.blit(sprite.image, (SCREEN_WIDTH // 2, sprite.rect.y))
+            else:
                 screen.blit(sprite.image, (sprite.rect.x - map_offset_x, sprite.rect.y))
-            # Desenha o jogador em uma posição fixa na tela para a câmera
-            screen.blit(player.image, (SCREEN_WIDTH // 2, player.rect.y))
         
         score_text = score_font.render(f"Score: {score}", True, WHITE)
         screen.blit(score_text, (10, 10))
@@ -538,11 +507,7 @@ def main():
         clock.tick(FPS)
 
     if not win:
-        # Pára a música e toca o som de morte se o jogador perdeu
-        pygame.mixer.music.stop()
-        if death_sound:
-            death_sound.play()
-        # Espera o som de morte terminar (aproximadamente 2 segundos)
+        # Espera 2 segundos antes de mostrar a tela de game over
         pygame.time.wait(2000)
 
     if win:
