@@ -1,6 +1,7 @@
 import pygame
 import random
 import os
+import sys
 
 # --- 1. CONFIGURAÇÃO INICIAL DO PYGAME ---
 # Inicializa o Pygame
@@ -391,7 +392,7 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
-                exit()
+                sys.exit()
             if event.type == pygame.KEYDOWN and event.key == pygame.K_UP:
                 player.jump()
 
@@ -533,13 +534,13 @@ def show_start_screen():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
-                exit()
+                sys.exit()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RETURN: # Verifica se a tecla ENTER foi pressionada
                     waiting = False
                 elif event.key == pygame.K_ESCAPE: # Adiciona uma opção para sair
                     pygame.quit()
-                    exit()
+                    sys.exit()
         clock.tick(FPS)
 
 # --- 8. LOOP PRINCIPAL DO PROGRAMA (GERENCIADOR DE REINÍCIO) ---
@@ -578,6 +579,6 @@ while True:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
-                    exit()
+                    sys.exit()
                 if event.type == pygame.KEYDOWN:
                     waiting_for_key = False

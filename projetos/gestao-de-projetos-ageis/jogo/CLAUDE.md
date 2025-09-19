@@ -14,9 +14,21 @@ python3 main.py
 ```
 
 ### Installing Dependencies
-The game requires pygame:
+The game requires pygame. Use the requirements file:
 ```bash
-pip install pygame
+pip install -r requirements.txt
+```
+
+Or manually install pygame:
+```bash
+pip install pygame==2.5.2
+```
+
+### Building Executable
+The project uses PyInstaller to create standalone executables:
+```bash
+pip install pyinstaller
+pyinstaller jogo-plataforma.spec
 ```
 
 ## Game Architecture
@@ -80,6 +92,26 @@ The game follows a monolithic architecture with all components defined in `main.
 
 The game uses a `SCALE_FACTOR` of 1.07 applied to all dimensions for consistent upscaling from the base 800x600 resolution.
 
+## CI/CD and Deployment
+
+### GitHub Actions
+The project includes automated workflows for building executables:
+
+- **build-executables.yml**: Builds for Windows, Linux, and macOS on push/PR
+- **build-dev.yml**: Manual development builds for specific platforms
+- **release.yml**: Creates releases with executables for version tags
+
+### Release Process
+1. Create and push a version tag: `git tag v1.0.0 && git push origin v1.0.0`
+2. GitHub Actions automatically builds executables for all platforms
+3. Creates a GitHub release with downloadable binaries
+
+### PyInstaller Configuration
+- Spec file: `jogo-plataforma.spec`
+- Includes `imagens/` folder in the bundle
+- Creates single executable with `--onefile`
+- No console window for cleaner user experience
+
 ## Important Notes
 
 - Audio functionality has been removed from the code
@@ -87,3 +119,4 @@ The game uses a `SCALE_FACTOR` of 1.07 applied to all dimensions for consistent 
 - Camera system prevents double-rendering of player sprite
 - Game uses sprite groups for collision detection and rendering
 - Temporary and duplicate files have been cleaned from the project
+- Executable builds automatically include all required assets

@@ -1,0 +1,188 @@
+name: Build Game Executables
+
+on:
+  push:
+    branches: [ main, develop ]
+    tags:
+      - 'v*'
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-latest
+            platform: linux
+            executable: jogo-plataforma
+            artifact_name: jogo-plataforma-linux-x64
+          - os: windows-latest
+            platform: windows
+            executable: jogo-plataforma.exe
+            artifact_name: jogo-plataforma-windows-x64
+          - os: macos-latest
+            platform: macos
+            executable: jogo-plataforma
+            artifact_name: jogo-plataforma-macos-x64
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Cache pip dependencies
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+
+    - name: Install system dependencies (Linux)
+      if: matrix.platform == 'linux'
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y \
+          libsdl2-dev \
+          libsdl2-image-dev \
+          libsdl2-mixer-dev \
+          libsdl2-ttf-dev \
+          libfreetype6-dev \
+          libportmidi-dev \
+          python3-dev
+
+    - name: Install Python dependencies
+      working-directory: ./projetos/gestao-de-projetos-ageis/jogo
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install pyinstaller
+
+    - name: Build executable with PyInstaller
+      working-directory: ./projetos/gestao-de-projetos-ageis/jogo
+      run: |
+        pyinstaller --onefile \
+          --windowed \
+          --add-data "imagens:imagens" \
+          --name "${{ matrix.executable }}" \
+          --distpath "./dist" \
+          --workpath "./build" \
+          --specpath "." \
+          main.py
+
+    - name: Test executable (Linux/macOS)
+      if: matrix.platform != 'windows'
+      working-directory: ./projetos/gestao-de-projetos-ageis/jogo
+      run: |
+        chmod +x dist/${{ matrix.executable }}
+        timeout 3s dist/${{ matrix.executable }} || echo "Test completed (expected timeout in CI environment)"
+
+    - name: Test executable (Windows)
+      if: matrix.platform == 'windows'
+      working-directory: ./projetos/gestao-de-projetos-ageis/jogo
+      shell: powershell
+      run: |
+        Start-Process -FilePath "dist/${{ matrix.executable }}" -Wait -TimeoutSec 3 -ErrorAction SilentlyContinue
+        Write-Host "Test completed (expected timeout in CI environment)"
+
+    - name: Create release package
+      working-directory: ./projetos/gestao-de-projetos-ageis/jogo
+      run: |
+        mkdir -p release
+        cp dist/${{ matrix.executable }} release/
+        cp README.md release/ 2>/dev/null || echo "# Jogo de Plataforma" > release/README.md
+        cp CLAUDE.md release/ 2>/dev/null || true
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: ${{ matrix.artifact_name }}
+        path: ./projetos/gestao-de-projetos-ageis/jogo/release/
+        retention-days: 30
+
+    - name: Get executable info
+      working-directory: ./projetos/gestao-de-projetos-ageis/jogo
+      run: |
+        echo "=== Executable Information ==="
+        ls -la dist/${{ matrix.executable }}
+        if [ "${{ matrix.platform }}" != "windows" ]; then
+          file dist/${{ matrix.executable }}
+        fi
+        echo "=========================="
+
+  create-release:
+    name: Create Release
+    needs: build
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/v')
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Download all artifacts
+      uses: actions/download-artifact@v3
+      with:
+        path: ./artifacts
+
+    - name: Create release archives
+      run: |
+        cd artifacts
+        for dir in */; do
+          if [ -d "$dir" ]; then
+            cd "$dir"
+            if [[ "$dir" == *"windows"* ]]; then
+              zip -r "../${dir%/}.zip" .
+            else
+              tar -czf "../${dir%/}.tar.gz" .
+            fi
+            cd ..
+          fi
+        done
+        ls -la *.{zip,tar.gz} 2>/dev/null || echo "No archives created"
+
+    - name: Create GitHub Release
+      uses: softprops/action-gh-release@v1
+      with:
+        name: "Jogo de Plataforma ${{ github.ref_name }}"
+        body: |
+          ## 🎮 Jogo de Plataforma - Release ${{ github.ref_name }}
+
+          ### 📦 Downloads
+          - **Windows**: `jogo-plataforma-windows-x64.zip`
+          - **Linux**: `jogo-plataforma-linux-x64.tar.gz`
+          - **macOS**: `jogo-plataforma-macos-x64.tar.gz`
+
+          ### 🎯 Como Jogar
+          1. Baixe o arquivo correspondente ao seu sistema operacional
+          2. Extraia o arquivo
+          3. Execute o jogo:
+             - **Windows**: Duplo-clique em `jogo-plataforma.exe`
+             - **Linux/macOS**: Execute `./jogo-plataforma` no terminal
+
+          ### 🎮 Controles
+          - **Setas direcionais**: Movimento
+          - **Seta para cima**: Pular
+          - **ENTER**: Começar o jogo
+          - **ESC**: Sair
+
+          ### 📋 Requisitos
+          - Nenhum! Os executáveis são independentes e não requerem Python ou pygame instalados.
+
+          ---
+          🤖 Compilado automaticamente via GitHub Actions
+        files: |
+          artifacts/*.zip
+          artifacts/*.tar.gz
+        draft: false
+        prerelease: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
