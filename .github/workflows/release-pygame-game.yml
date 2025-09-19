@@ -61,7 +61,8 @@ jobs:
 
         # Create source distribution
         mkdir -p release-packages/source
-        cp -r . release-packages/source/
+        cp -r * release-packages/source/ 2>/dev/null || true
+        cp -r .[^.]* release-packages/source/ 2>/dev/null || true
         cd release-packages/source
         rm -rf __pycache__ .claude dist build *.spec
         cd ../..
