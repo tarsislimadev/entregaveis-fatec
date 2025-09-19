@@ -1,0 +1,185 @@
+name: Release PyGame Project
+
+on:
+  push:
+    tags:
+      - 'game-v*'
+  workflow_dispatch:
+    inputs:
+      tag_name:
+        description: 'Tag name for the release'
+        required: true
+        default: 'game-v1.0.0'
+
+jobs:
+  create-release:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pygame pyinstaller
+
+    - name: Create requirements.txt
+      run: |
+        echo "pygame==2.5.2" > ./projetos/gestao-de-projetos-ageis/jogo/requirements.txt
+
+    - name: Build standalone executable (Linux)
+      run: |
+        cd ./projetos/gestao-de-projetos-ageis/jogo
+        pyinstaller --onefile --add-data "imagens:imagens" main.py
+        mv dist/main dist/jogo-plataforma-linux
+
+    - name: Set up Windows cross-compilation (Wine)
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y wine64
+
+    - name: Build Windows executable
+      run: |
+        cd ./projetos/gestao-de-projetos-ageis/jogo
+        # Create a simple batch script for Windows users
+        cat > run-game.bat << 'EOF'
+        @echo off
+        echo Starting PyGame Platform Game...
+        python main.py
+        pause
+        EOF
+
+    - name: Create release package
+      run: |
+        cd ./projetos/gestao-de-projetos-ageis/jogo
+
+        # Create source distribution
+        mkdir -p release-packages/source
+        cp -r . release-packages/source/
+        cd release-packages/source
+        rm -rf __pycache__ .claude dist build *.spec
+        cd ../..
+
+        # Create Linux executable package
+        mkdir -p release-packages/linux
+        cp dist/jogo-plataforma-linux release-packages/linux/
+        cp -r imagens release-packages/linux/
+        cp CLAUDE.md release-packages/linux/README.md
+
+        # Create Windows source package
+        mkdir -p release-packages/windows
+        cp main.py release-packages/windows/
+        cp run-game.bat release-packages/windows/
+        cp -r imagens release-packages/windows/
+        cp requirements.txt release-packages/windows/
+        cat > release-packages/windows/README.txt << 'EOF'
+        Jogo de Plataforma - PyGame
+        ===========================
+
+        Para jogar no Windows:
+        1. Instale Python 3.9+ (https://www.python.org/downloads/)
+        2. Abra o terminal/cmd na pasta do jogo
+        3. Execute: pip install -r requirements.txt
+        4. Execute: python main.py
+
+        Ou simplesmente execute o arquivo run-game.bat
+
+        Controles:
+        - Setas ou WASD para mover
+        - Espaço para pular
+        - Colete moedas e chegue à plataforma final!
+        EOF
+
+        # Create zip files
+        cd release-packages
+        zip -r ../jogo-plataforma-source.zip source/
+        zip -r ../jogo-plataforma-linux.zip linux/
+        zip -r ../jogo-plataforma-windows.zip windows/
+
+    - name: Get tag name
+      id: tag_name
+      run: |
+        if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+          echo "TAG_NAME=${{ github.event.inputs.tag_name }}" >> $GITHUB_OUTPUT
+        else
+          echo "TAG_NAME=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+        fi
+
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ steps.tag_name.outputs.TAG_NAME }}
+        release_name: 'Jogo de Plataforma ${{ steps.tag_name.outputs.TAG_NAME }}'
+        body: |
+          ## Jogo de Plataforma - PyGame
+
+          Projeto desenvolvido para a disciplina de Gestão de Projetos Ágeis da FATEC.
+
+          ### Características do Jogo
+          - Jogo de plataforma 2D desenvolvido em Python com PyGame
+          - Sistema de vida (3 corações)
+          - Inimigos com projéteis
+          - Moedas colecionáveis
+          - Sistema de câmera que segue o jogador
+          - Plataformas com espinhos e obstáculos
+
+          ### Downloads Disponíveis
+          - **jogo-plataforma-source.zip**: Código fonte completo
+          - **jogo-plataforma-linux.zip**: Executável standalone para Linux
+          - **jogo-plataforma-windows.zip**: Código fonte + instruções para Windows
+
+          ### Requisitos
+          - Python 3.9+
+          - PyGame 2.5.2
+
+          ### Como Jogar
+          - Use as setas do teclado ou WASD para mover
+          - Espaço para pular
+          - Colete moedas amarelas
+          - Evite os inimigos e espinhos
+          - Chegue até a plataforma final para vencer!
+
+          ---
+
+          🎮 **Desenvolvido para FATEC - Gestão de Projetos Ágeis**
+        draft: false
+        prerelease: false
+
+    - name: Upload Source Release Asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./projetos/gestao-de-projetos-ageis/jogo/jogo-plataforma-source.zip
+        asset_name: jogo-plataforma-source.zip
+        asset_content_type: application/zip
+
+    - name: Upload Linux Release Asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./projetos/gestao-de-projetos-ageis/jogo/jogo-plataforma-linux.zip
+        asset_name: jogo-plataforma-linux.zip
+        asset_content_type: application/zip
+
+    - name: Upload Windows Release Asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./projetos/gestao-de-projetos-ageis/jogo/jogo-plataforma-windows.zip
+        asset_name: jogo-plataforma-windows.zip
+        asset_content_type: application/zip
