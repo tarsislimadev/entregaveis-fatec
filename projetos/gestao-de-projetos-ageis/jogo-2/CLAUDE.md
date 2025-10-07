@@ -48,6 +48,7 @@ The game uses a horizontal progression with these key areas:
 jogo-2/
 ├── main.py                    # Complete game implementation
 ├── tempCodeRunnerFile.py     # Development artifact with partial lives system
+├── requirements.txt          # Python dependencies (pygame==2.6.1)
 ├── level_design.txt          # Empty file (design likely in main.py)
 ├── imagens/                  # Sprite assets (PNG)
 │   ├── *direita.png / *esquerda.png     # Player/enemy animations
@@ -71,17 +72,23 @@ jogo-2/
 
 ## Common Commands
 
+### Installing Dependencies
+
+```bash
+# Install dependencies
+pip install -r requirements.txt
+
+# Or manually install pygame
+pip install pygame
+```
+
 ### Running the Game
 
 ```bash
-python3 main.py
+python main.py
 ```
 
-**Requirements**: Python 3.9+ with PyGame 2.5.2
-
-```bash
-pip install pygame==2.5.2
-```
+**Requirements**: Python 3.9+ with PyGame 2.6.1+
 
 ### Controls
 
@@ -130,6 +137,31 @@ The game tracks death reasons: `'caiu'` (fell), `'espetado'` (spiked), `'atingid
 - `tempCodeRunnerFile.py` contains an incomplete lives system implementation (different from main.py's health system)
 - Boss sprite directions are swapped: `boss_direita_image = boss_esquerda` (line 251)
 - Player bullets have hardcoded screen bounds check (line 335) that may need adjustment for larger levels
+
+## Core Architecture Details
+
+### Sprite System
+All game entities inherit from `pygame.sprite.Sprite` and are organized into logical groups:
+- `all_sprites`: Master group for rendering
+- `platforms`: Collision detection with ground surfaces
+- `enemies`: AI entities requiring update cycles
+- `bullets`: Projectile management and cleanup
+- `coins`: Collectible item detection
+
+### Physics Engine
+The game implements a custom physics system:
+- **Gravity**: Applied every frame with `velocity_y += 0.8 * SCALE_FACTOR`
+- **Collision Detection**: Separate X/Y axis processing prevents tunneling
+- **World Coordinates**: `real_x` tracks absolute position, `rect.x` for rendering
+- **Camera System**: Side-scrolling with `map_offset_x` translation
+
+### Game Loop Architecture
+1. **Event Processing**: Keyboard input, quit events
+2. **Entity Updates**: Physics, AI, animation state changes
+3. **Collision Detection**: Multi-pass collision resolution
+4. **Camera Update**: Viewport positioning based on player location
+5. **Rendering**: Sprite drawing with camera offset translation
+6. **Audio Management**: Event-triggered sound effects
 
 ## Game State Flow
 
