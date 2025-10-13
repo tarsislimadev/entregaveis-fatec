@@ -26,7 +26,8 @@
     --image Ubuntu2204 \
     --admin-username azureuser \
     --generate-ssh-keys \
-    --size Standard_B1s
+    --size Standard_B1s \
+    --location eastus2
 
   Key parameters:
   - --resource-group: Resource group name
@@ -35,6 +36,6 @@
   - --admin-username: Admin user name
   - --generate-ssh-keys: Auto-generate SSH keys for Linux VMs
   - --size: VM size (Standard_B1s is basic, Standard_D2s_v3 for more power)
+  - --location: eastus (East US 2 Region)
 
-  For Windows VMs, replace --generate-ssh-keys with --admin-password and provide a password when prompted.
-
+ For Windows VMs, replace --generate-ssh-keys with --admin-password and provide a password when prompted.
