@@ -1,4 +1,4 @@
-# Aula 10 da disciplina de Introdução à Inteligencia Artificial
+# Aula 10
 
 ## Atividade - Aspirador
 
