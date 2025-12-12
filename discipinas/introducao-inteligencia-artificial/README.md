@@ -2,12 +2,12 @@
 
 ## Aula 2025-11-05
 
-[Aula 09](./aula09/README.md)
+[Aula 01](./aula01/README.md)
 
 ## Aula 2025-11-12
 
-[Aula 10](./aula10/README.md)
+[Aula 02](./aula02/README.md)
 
 ## Aula 2025-11-19
 
-[Aula 11](./aula11/README.md)
+[Aula 03](./aula03/README.md)
