@@ -11,3 +11,5 @@ graph TD;
     D-->E;
     E-->D;
 ```
+
+Vamos utilizar o algoritmo `Busca em Largura` para encontrar possiveis andamentos entre pontos no grafo.
