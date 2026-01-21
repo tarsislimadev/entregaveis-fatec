@@ -11,29 +11,43 @@ const map = [
 const begin = [0, 0]
 const end = [4, 4]
 
-const step = (here, there, map, steps = []) => {
-  const [x_here, y_here] = here
-  const [x_there, y_there] = there
+const findPath = (start, end, map) => {
+  const queue = [[start]]
+  const visited = new Set([start.toString()])
 
-  // is it final?
-  if (x_here == x_there && y_here == y_there) {
-    return steps
+  while (queue.length > 0) {
+    const path = queue.shift()
+    const [row, col] = path[path.length - 1]
+
+    if (row === end[0] && col === end[1]) {
+      return path
+    }
+
+    // Possible moves: up, down, left, right
+    const moves = [
+      [row - 1, col], // up
+      [row + 1, col], // down
+      [row, col - 1], // left
+      [row, col + 1], // right
+    ]
+
+    for (const move of moves) {
+      const [nextRow, nextCol] = move
+
+      // Check boundaries
+      if (nextRow >= 0 && nextRow < WIDTH && nextCol >= 0 && nextCol < WIDTH) {
+        // Check if it's a valid path and not visited
+        if (map[nextRow][nextCol] === 0 && !visited.has(move.toString())) {
+          visited.add(move.toString())
+          const newPath = [...path, move]
+          queue.push(newPath)
+        }
+      }
+    }
   }
-
-  // find neighbors
-  const neighbors = [
-    [x_here - 1, y_here], // up
-    [x_here + 1, y_here], // down
-    [x_here, y_here - 1], // left
-    [x_here, y_here + 1], // right
-  ].filter(([x, y]) => x >= 0 && x <= WIDTH && y >= 0 && y <= WIDTH)
-
-  console.log({ neighbors })
-
-  // neighbors.map(([y, x]) => console.log({ x, y, local: map[x][y] }))
 
   return null
 }
 
-const way = step(begin, end, map, [begin])
-console.log({ way })
+const way = findPath(begin, end, map)
+console.log('way', way)
