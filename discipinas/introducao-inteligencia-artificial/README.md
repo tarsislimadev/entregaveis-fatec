@@ -15,3 +15,11 @@
 ## Tarefa Grafo
 
 [Tarefa Grafo](./tarefa-grafo/README.md)
+
+## Aula 2026-01-20
+
+[Aula](./aula-2026-01-20/README.md)
+
+## Aula 2026-01-21
+
+[Aula](./aula-2026-01-21/README.md)
