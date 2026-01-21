@@ -26,11 +26,11 @@ const step = (here, there, map, steps = []) => {
     [x_here + 1, y_here], // down
     [x_here, y_here - 1], // left
     [x_here, y_here + 1], // right
-  ].filter(([x, y]) => map[x][y] == 0)
+  ].filter(([x, y]) => x >= 0 && x <= WIDTH && y >= 0 && y <= WIDTH)
 
-  neighbors.map((neighbor) => {
-    const [x, y] = neighbor
-  })
+  console.log({ neighbors })
+
+  // neighbors.map(([y, x]) => console.log({ x, y, local: map[x][y] }))
 
   return null
 }
