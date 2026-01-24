@@ -8,14 +8,14 @@
 
 ## Projetos
 
-### [projeto biblioteca autonoma](./src/biblioteca/README.md)
+### [projeto biblioteca autonoma](./projetos/biblioteca/README.md)
 
 O aluno se identifica para emprestar livros sem a necessidade de autorização do bibliotecário.
 
-### [projeto mercadinho autonomo](./src/mercadinho/README.md)
+### [projeto mercadinho autonomo](./projetos/mercadinho/README.md)
 
 O comprador se identifica para comprar sem a necessidade de passar pelo caixa pessoal.
 
-### [projeto geladeira](./src/geladeira/README.md)
+### [projeto geladeira](./projetos/geladeira/README.md)
 
 Aplicativo de auto-atendmento para produto retirado da geladeira da Fatec.
