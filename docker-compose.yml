@@ -5,3 +5,7 @@ services:
       - '8080:8080'
     volumes:
       - './projetos/gestao-de-projetos-ageis/aula-4/:/app/'
+  iaead:
+    build: './projetos/iaead'
+    volumes:
+      - './projetos/iaead:/app'
