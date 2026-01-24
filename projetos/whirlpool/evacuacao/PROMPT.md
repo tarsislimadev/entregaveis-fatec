@@ -1,1 +1,0 @@
-# Evacuação Whirlpool

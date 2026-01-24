@@ -1,0 +1,12 @@
+{
+  "name": "iaead",
+  "version": "0.1.0",
+  "description": "Leitura automática dos textos das disciplinas de Inteligrncia Aritificial da FATEC Rio Claro.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./index.js"
+  },
+  "dependencies": {
+    "puppeteer": "^24.18.0"
+  }
+}
