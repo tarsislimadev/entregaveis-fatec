@@ -1,3 +1,1 @@
-# Estrutura de Dados - Aula 1 (2025/02/12)
-
-
+# Estrutura de Dados - Aula 1 (2026/02/12)
