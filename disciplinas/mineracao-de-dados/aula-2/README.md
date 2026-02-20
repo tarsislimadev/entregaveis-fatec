@@ -61,3 +61,9 @@ create table corrida(
   on update cascade
 );
 ```
+
+Criar indíce `taxista`
+
+```sql
+create index taxista on corrida(placa);
+```
