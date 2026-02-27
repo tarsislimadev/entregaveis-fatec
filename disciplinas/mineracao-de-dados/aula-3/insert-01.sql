@@ -29,9 +29,3 @@ insert into corrida (datapedido, cliid, placa) values ('2022-01-01', 6, 'ABC1239
 insert into corrida (datapedido, cliid, placa) values ('2022-01-01', 7, 'ABC1240');
 insert into corrida (datapedido, cliid, placa) values ('2022-01-01', 8, 'ABC1241');
 insert into corrida (datapedido, cliid, placa) values ('2022-01-01', 9, 'ABC1242');
-
-select * from cliente;
-
-select * from taxi;
-
-select * from corrida;
