@@ -1,5 +1,9 @@
 const Parser = require('rss-parser');
 
+const fs = require('fs')
+
+const urls = fs.readFileSync('urls.txt').toString('utf-8').split('\n').map(url => url.trim()).filter(Boolean)
+
 const parser = new Parser();
 
 const run = async (url) => {
@@ -10,4 +14,4 @@ const run = async (url) => {
   feed.items.map(({ title, link, pubDate }) => console.log({ title, link, pubDate }));
 }
 
-process.argv.slice(2).map(url => run(url));
+urls.map((url) => run(url))
