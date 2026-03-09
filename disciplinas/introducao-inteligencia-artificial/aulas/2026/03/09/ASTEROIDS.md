@@ -15,3 +15,7 @@ Each Layer has many Neurons.
 Each Neuron has one Weight.
 
 Get the Weights.
+
+## 
+
+Just `activate` function changes, implicitly the weights.
