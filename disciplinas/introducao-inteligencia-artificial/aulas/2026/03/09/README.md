@@ -29,3 +29,5 @@ Gemini
 ## n8n workflows
 
 [Recover Shopify abandoned carts with email, SMS, WhatsApp & Facebook retargeting](https://n8n.io/workflows/11805-recover-shopify-abandoned-carts-with-email-sms-whatsapp-and-facebook-retargeting/)
+
+# [groq](https://console.groq.com/home)
