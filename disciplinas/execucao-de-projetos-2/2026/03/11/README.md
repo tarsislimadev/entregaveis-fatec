@@ -40,8 +40,8 @@
 
 ## QUINELATO
 
-- Controle de documentos
+- [ ] Controle de documentos
 
-## 
+## Matriz RACI
 
-
+O que é Matriz RACI?
