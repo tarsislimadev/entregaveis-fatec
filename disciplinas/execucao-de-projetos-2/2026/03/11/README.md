@@ -45,3 +45,7 @@
 ## Matriz RACI
 
 O que é Matriz RACI?
+
+## Projeto YEB - Automatização da Validadção de Banco de Dados
+
+[Veja no GitHub](https://github.com/tarsislimadev/validacao_banco_dados_fatec_yeb)
