@@ -22,6 +22,8 @@
 
 - Raspagem de dados de concorrentes (Mercado Livre)
 
+- Break-even Simulator (receita, taxas, custos fixos, projeção de equilibrio, composição do ticket) (gráficos, exportação para PDF)
+
 ## Ferramentas de IA
 
 - [ ] Stitch AI
