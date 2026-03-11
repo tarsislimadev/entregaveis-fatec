@@ -31,3 +31,17 @@
 - [ ] Stitch AI
 
 - [x] Antigravity IDE
+
+## YEB
+
+- [ ] Automação da validação de banco de dados
+
+- [ ] Validação das atividades economicas das empresas
+
+## QUINELATO
+
+- Controle de documentos
+
+## 
+
+
