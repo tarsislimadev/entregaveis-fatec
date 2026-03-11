@@ -24,6 +24,8 @@
 
 - Break-even Simulator (receita, taxas, custos fixos, projeção de equilibrio, composição do ticket) (gráficos, exportação para PDF)
 
+- Página para restaurante (reserva de mesas, cadastro de clientes, página sobre) (banco de dados)
+
 ## Ferramentas de IA
 
 - [ ] Stitch AI
