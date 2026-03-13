@@ -21,3 +21,7 @@ Confluência de multiplas disciplinas:
 ## Instalar Anaconda
 
 [anaconda.com/download](https://www.anaconda.com/download)
+
+## Atividade 2
+
+[Atividade 2](./atividade2.DOC)
