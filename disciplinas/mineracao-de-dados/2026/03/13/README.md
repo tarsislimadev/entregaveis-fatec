@@ -17,3 +17,7 @@ Confluência de multiplas disciplinas:
 - Estatítica
 - Tecnicas de visualização de dados
 - Outras disciplinas
+
+## Instalar Anaconda
+
+[anaconda.com/download](https://www.anaconda.com/download)
