@@ -51,3 +51,17 @@ Bancos de dados baseados em grafo são sistemas projetados para lidar com dados 
 ## ✅ Conclusão
 
 Se você precisa analisar relações complexas (como redes sociais, rotas ou fraudes), bancos de dados de grafos são a escolha ideal. Para aplicações mais simples, um banco relacional ou NoSQL pode ser suficiente.  
+
+## 📚 Referências
+
+- [Oracle](https://www.oracle.com/br/autonomous-database/what-is-graph-database/)
+- [DataCamp](https://www.datacamp.com/pt/blog/what-is-a-graph-database)
+- [bytes.updev.dev.br](https://bytes.updev.dev.br/bancos-de-dados-de-grafos-avaliacao-e-principais-aspectos/)
+
+---
+
+# Ubuntu no Docker
+
+```bash
+docker run --rm -it --net host -w /app ubuntu bash
+```
