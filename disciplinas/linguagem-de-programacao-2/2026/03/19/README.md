@@ -4,4 +4,4 @@
 
 PDF - [Local](./Projeto.pdf) [Github](https://github.com/orlandosaraivajr/FATEC_1SEM26_LP2/blob/main/Projeto.pdf)
 
-Projeto - [GitHub](https://github.com/tarsislimadev/projeto-fatec-lp2)
+Projeto - [Github](https://github.com/tarsislimadev/projeto-cantina-fatec)
