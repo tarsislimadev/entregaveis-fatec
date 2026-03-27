@@ -73,3 +73,39 @@ Exemplos:
 - "∩" - interseção
 
 - "∅" - conjunto vazio
+
+## Um conjunto é um subconjunto de si mesmo
+
+Exemplo:
+
+- "{1, 2, 3}" é um subconjunto de "{1, 2, 3}"
+
+## Vazio é subconjunto de qualquer conjunto
+
+Exemplo:
+
+- "∅" é um subconjunto de "{1, 2, 3}"
+
+## Tente isso...
+
+Seja B = {a; b; c}. Escreva todos os subconjuntos de B.
+
+Resposta:
+
+- "∅"
+
+- "{a}"
+
+- "{b}"
+
+- "{c}"
+
+- "{a, b}"
+
+- "{a, c}"
+
+- "{b, c}"
+
+- "{a, b, c}"
+
+Um conjunto com "n" elementos tem "2^n" subconjuntos.
