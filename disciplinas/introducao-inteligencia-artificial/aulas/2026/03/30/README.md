@@ -6,14 +6,16 @@ https://github.com/daviduarte/introducao_a_inteligencia_artificial_fatec_2026/tr
 
 https://docs.ultralytics.com/datasets/detect/coco8/
 
-## Download
+### Download
 
 ```powershell
 curl.exe -L https://github.com/ultralytics/assets/releases/download/v0.0.0/coco8.zip -o coco8.zip
 ```
 
-## Unzip
+### Unzip
 
 ```powershell
 Expand-Archive -Path "coco8.zip" -DestinationPath "."
 ```
+
+## https://www.cvat.ai/
