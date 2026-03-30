@@ -1,6 +1,8 @@
 # Chicken Detection and Tracking Detection API
 # https://universe.roboflow.com/chickens/chicken-detection-and-tracking/model/11
 
+# conda create -n roboflow-env python=3.9 -y
+# conda activate roboflow-env
 # python -m pip install inference supervision opencv-python
 
 from inference import get_model
