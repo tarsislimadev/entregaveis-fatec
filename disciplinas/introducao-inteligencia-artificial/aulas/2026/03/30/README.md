@@ -19,3 +19,9 @@ Expand-Archive -Path "coco8.zip" -DestinationPath "."
 ```
 
 ## https://www.cvat.ai/
+
+## Entregas pra proxima semana (2026-04-06)
+
+- [ ] Classificar imagens
+
+- [ ] Verificar colisões de carros em imagens
