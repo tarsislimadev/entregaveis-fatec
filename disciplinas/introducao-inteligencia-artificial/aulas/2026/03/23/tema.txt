@@ -1,0 +1,11 @@
+Tema escolhido para o trabalho final da disciplina:
+
+Chicken Detection
+
+https://universe.roboflow.com/chickens/chicken-detection-and-tracking/model/11
+
+---
+
+Pesquisa de conjuntos de dados disponíveis abertamente na Internet:
+
+"Rooster morning sound #crowing": https://www.youtube.com/shorts/nVdvFuR9aQo
