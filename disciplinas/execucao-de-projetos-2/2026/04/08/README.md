@@ -2,6 +2,6 @@
 
 - [x] BMC atualizado (após reunião com o cliente perceiro)
 
-- [-] Proposta de próximas atividades (condução de projetos)
+- [x] Proposta de próximas atividades (condução de projetos)
 
-- [ ] Sala de reunião (versa 1), a partir das 8h00 - somente PO e representante
+- [x] Sala de reunião (versa 1), a partir das 8h00 - somente PO e representante
