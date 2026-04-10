@@ -32,7 +32,7 @@ O K-medoides é uma variação robusta do K-means que usa medoides (pontos reais
 3. Para cada cluster, encontrar o medoide ótimo
 4. Repetir passos 2-3 até convergência
 
-## 
+## Anotações Gerais
 
 - [ ] Baixar Notebook da aula de Mineração de Dados, no Siga.
 
@@ -51,3 +51,9 @@ https://somostera.com/blog/clusterizacao-de-dados
 - "Base de dados sintética" contem dados inventados.
 
 - "Mineração é investigação" - Prof. Angela
+
+https://github.com/lizziefg/Mineracao-Pastagens
+
+https://github.com/ArthurAraLeite/mineracao_analise_de_disponibilidade_cultural_de_mangas
+
+https://github.com/MateusJoga/Projeto_Agrupamento
