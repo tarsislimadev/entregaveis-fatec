@@ -8,6 +8,14 @@
 
 - Metodos dos Minimos Quadrados
 
+## Função do 2o. grau
+
+- Expressão da forma f(x) = ax² + bx + c, onde a ≠ 0.
+
+- Gráfico é uma parábola.
+
+- Raízes, vértice e discriminante (Δ).
+
 ## Equação Exponencial
 
 - A incognita está no expoente.
