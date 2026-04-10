@@ -1,3 +1,33 @@
 # Mineração de Dados - 2026-04-10
 
+## Algoritmo K-means
 
+O K-means é um algoritmo de clustering que particiona os dados em k clusters através da minimização da variância intra-cluster.
+
+### Características:
+- Algoritmo iterativo baseado em centróides
+- Minimiza a soma das distâncias ao quadrado dentro de clusters
+- Convergência garantida
+- Sensível à inicialização dos centróides
+
+### Passos:
+1. Inicializar k centróides aleatoriamente
+2. Atribuir cada ponto ao centróide mais próximo
+3. Recalcular os centróides como a média dos pontos no cluster
+4. Repetir passos 2-3 até convergência
+
+## Algoritmo K-medoides
+
+O K-medoides é uma variação robusta do K-means que usa medoides (pontos reais do dataset) em vez de centróides.
+
+### Características:
+- Usa pontos reais como representantes dos clusters
+- Mais robusto a outliers que K-means
+- Pode usar qualquer métrica de distância
+- Computacionalmente mais custoso
+
+### Passos:
+1. Inicializar k medoides aleatoriamente
+2. Atribuir cada ponto ao medoide mais próximo
+3. Para cada cluster, encontrar o medoide ótimo
+4. Repetir passos 2-3 até convergência
