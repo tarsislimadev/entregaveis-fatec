@@ -57,3 +57,7 @@ https://github.com/lizziefg/Mineracao-Pastagens
 https://github.com/ArthurAraLeite/mineracao_analise_de_disponibilidade_cultural_de_mangas
 
 https://github.com/MateusJoga/Projeto_Agrupamento
+
+---
+
+- Expand-Archive -Path .\file.zip -DestinationPath .\path -Force
