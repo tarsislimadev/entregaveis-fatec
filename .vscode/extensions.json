@@ -2,6 +2,7 @@
   "recommendations": [
     "ms-python.python",
     "tomoki1207.pdf",
-    "ms-toolsai.jupyter"
+    "ms-toolsai.jupyter",
+    "mechatroner.rainbow-csv"
   ]
 }
