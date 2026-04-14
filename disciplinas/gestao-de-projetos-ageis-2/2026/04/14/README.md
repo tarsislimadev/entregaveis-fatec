@@ -33,3 +33,7 @@ Documento formal que consolida todos os requisitos levantados na fase de elicita
 ## Entregas
 
 - [ ] Entregar DRS até 28/04
+
+- [Modelo de DRS](./DRS_Exemplo_Sistema_Biblioteca.pdf)
+
+- [Explicação](./engenharia_requisitos.pdf)
