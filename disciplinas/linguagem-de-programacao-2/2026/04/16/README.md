@@ -2,22 +2,22 @@
 
 ## Funções Hash (em Python)
 
-Hash functions in Python convert input data into fixed-size byte strings using the `hash()` function. These functions are essential for:
+Funções hash em Python convertem dados de entrada em strings de bytes de tamanho fixo usando a função `hash()`. Essas funções são essenciais para:
 
-- Dictionary and Set Operations: Hash functions determine where values are stored internally
-- Data Integrity: Detect if data has been modified using hashing algorithms like MD5, SHA-1, and SHA-256
-- Performance: Enable O(1) lookup times in hash tables
+- Operações de Dicionário e Conjunto: Funções hash determinam onde os valores são armazenados internamente
+- Integridade de Dados: Detectar se os dados foram modificados usando algoritmos de hash como MD5, SHA-1 e SHA-256
+- Desempenho: Ativar tempos de busca O(1) em tabelas hash
 
-Python's built-in `hash()` returns an integer hash value for any hashable object (strings, tuples, numbers, etc.). For cryptographic purposes, the `hashlib` module provides secure hash algorithms.
+O `hash()` integrado do Python retorna um valor hash inteiro para qualquer objeto hashable (strings, tuplas, números, etc.). Para fins criptográficos, o módulo `hashlib` fornece algoritmos de hash seguro.
 
-### Example:
+### Exemplo:
 ```python
-# Built-in hash
-print(hash("hello"))  # Output: hash value (varies by session)
+# Hash integrado
+print(hash("hello"))  # Saída: valor hash (varia por sessão)
 
-# Cryptographic hashing
+# Hash criptográfico
 import hashlib
 text = "hello"
 hash_obj = hashlib.sha256(text.encode())
-print(hash_obj.hexdigest())  # Output: 2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824
+print(hash_obj.hexdigest())  # Saída: 2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824
 ```
