@@ -24,6 +24,4 @@ print(hash_obj.hexdigest())  # Saída: 2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1
 
 ## Tabela ASCII
 
-[tabela](./ascii.md)
-
-[image](./ascii.png)
+[![image](./ascii.png)](./ascii.md)
