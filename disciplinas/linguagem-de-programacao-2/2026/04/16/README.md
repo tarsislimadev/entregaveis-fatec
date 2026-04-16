@@ -21,3 +21,9 @@ text = "hello"
 hash_obj = hashlib.sha256(text.encode())
 print(hash_obj.hexdigest())  # Saída: 2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824
 ```
+
+## Tabela ASCII
+
+[tabela](./ascii.md)
+
+[image](./ascii.png)
