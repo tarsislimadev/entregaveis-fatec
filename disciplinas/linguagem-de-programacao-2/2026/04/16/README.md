@@ -25,3 +25,11 @@ print(hash_obj.hexdigest())  # Saída: 2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1
 ## Tabela ASCII
 
 [![image](./ascii.png)](./ascii.md)
+
+## Funções HASH perfeitas
+
+Evitam colisões.
+
+```python
+sum([(ix + 1) * ord(x) for ix, x in enumerate("hello world")])
+```
