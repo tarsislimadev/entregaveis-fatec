@@ -155,3 +155,85 @@ def particionar(lista, inicio, fim):
 numeros = [38, 27, 43, 3, 9, 82, 10]
 print(quick_sort(numeros))
 ```
+
+## TimSort
+
+TimSort é o algoritmo de ordenação usado internamente pelo Python (na função `sorted()` e no método `list.sort()`). Ele combina ideias do **Insertion Sort** e do **Merge Sort** para obter bom desempenho em dados reais.
+
+O funcionamento, de forma simplificada, é:
+
+1. Divide a lista em blocos menores chamados **runs**.
+2. Ordena cada run (normalmente com Insertion Sort, que é muito eficiente para blocos pequenos).
+3. Faz o **merge** dessas runs de maneira inteligente, aproveitando partes que já estavam ordenadas.
+
+Por isso, o TimSort costuma ter desempenho de **O(n log n)** no caso médio e no pior caso, mantendo estabilidade (elementos iguais preservam a ordem relativa).
+
+![Imagem TimSort](./tim-sort.gif)
+
+```python
+def insertion_sort_intervalo(lista, inicio, fim):
+	for i in range(inicio + 1, fim + 1):
+		chave = lista[i]
+		j = i - 1
+
+		while j >= inicio and lista[j] > chave:
+			lista[j + 1] = lista[j]
+			j -= 1
+
+		lista[j + 1] = chave
+
+
+def merge_intervalos(lista, esquerda, meio, direita):
+	esq = lista[esquerda:meio + 1]
+	dir = lista[meio + 1:direita + 1]
+
+	i = j = 0
+	k = esquerda
+
+	while i < len(esq) and j < len(dir):
+		if esq[i] <= dir[j]:
+			lista[k] = esq[i]
+			i += 1
+		else:
+			lista[k] = dir[j]
+			j += 1
+		k += 1
+
+	while i < len(esq):
+		lista[k] = esq[i]
+		i += 1
+		k += 1
+
+	while j < len(dir):
+		lista[k] = dir[j]
+		j += 1
+		k += 1
+
+
+def tim_sort(lista):
+	n = len(lista)
+	min_run = 32
+
+	# 1) Ordena cada run com insertion sort
+	for inicio in range(0, n, min_run):
+		fim = min(inicio + min_run - 1, n - 1)
+		insertion_sort_intervalo(lista, inicio, fim)
+
+	# 2) Faz merge progressivo das runs
+	tamanho = min_run
+	while tamanho < n:
+		for esquerda in range(0, n, 2 * tamanho):
+			meio = min(n - 1, esquerda + tamanho - 1)
+			direita = min((esquerda + 2 * tamanho - 1), (n - 1))
+
+			if meio < direita:
+				merge_intervalos(lista, esquerda, meio, direita)
+
+		tamanho *= 2
+
+	return lista
+
+
+numeros = [38, 27, 43, 3, 9, 82, 10, 14, 2, 50]
+print(tim_sort(numeros))
+```
