@@ -119,3 +119,39 @@ def selection_sort(lista):
 numeros = [38, 27, 43, 3, 9, 82, 10]
 print(selection_sort(numeros))
 ```
+
+## QuickSort
+
+QuickSort é um algoritmo eficiente que também segue a estratégia de dividir para conquistar. Ele escolhe um elemento como pivô, reorganiza a lista de forma que os menores fiquem à esquerda e os maiores à direita, e repete o processo recursivamente nas duas partes.
+
+Na prática, QuickSort costuma ter ótimo desempenho médio, com complexidade de **O(n log n)**, e é muito utilizado em cenários reais. No pior caso (quando as divisões ficam muito desbalanceadas), pode chegar a **O(n²)**.
+
+![Imagem QuickSort](./quick-sort.gif)
+
+```python
+def quick_sort(lista, inicio=0, fim=None):
+	if fim is None:
+		fim = len(lista) - 1
+
+	if inicio < fim:
+		indice_pivo = particionar(lista, inicio, fim)
+		quick_sort(lista, inicio, indice_pivo - 1)
+		quick_sort(lista, indice_pivo + 1, fim)
+
+	return lista
+
+def particionar(lista, inicio, fim):
+	pivo = lista[fim]
+	i = inicio - 1
+
+	for j in range(inicio, fim):
+		if lista[j] <= pivo:
+			i += 1
+			lista[i], lista[j] = lista[j], lista[i]
+
+	lista[i + 1], lista[fim] = lista[fim], lista[i + 1]
+	return i + 1
+
+numeros = [38, 27, 43, 3, 9, 82, 10]
+print(quick_sort(numeros))
+```
