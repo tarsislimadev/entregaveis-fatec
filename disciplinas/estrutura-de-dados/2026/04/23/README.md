@@ -91,3 +91,31 @@ def bubble_sort(lista):
 numeros = [38, 27, 43, 3, 9, 82, 10]
 print(bubble_sort(numeros))
 ```
+
+## Selection Sort
+
+Selection Sort é um algoritmo de ordenação que divide a lista em duas partes: a parte já ordenada (no início) e a parte ainda não ordenada. Em cada passada, ele procura o menor elemento da parte não ordenada e o coloca na posição correta, trocando com o elemento da posição atual.
+
+Ele é simples de entender e também trabalha **in-place** (sem usar estrutura auxiliar relevante). Sua complexidade de tempo no melhor, médio e pior caso é **O(n²)**, por isso costuma ser usado mais em contextos didáticos ou listas pequenas.
+
+![Imagem Selection Sort](./selection-sort.gif)
+
+```python
+def selection_sort(lista):
+	n = len(lista)
+
+	for i in range(n):
+		indice_menor = i
+
+		for j in range(i + 1, n):
+			if lista[j] < lista[indice_menor]:
+				indice_menor = j
+
+		if indice_menor != i:
+			lista[i], lista[indice_menor] = lista[indice_menor], lista[i]
+
+	return lista
+
+numeros = [38, 27, 43, 3, 9, 82, 10]
+print(selection_sort(numeros))
+```
