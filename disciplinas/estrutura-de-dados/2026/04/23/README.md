@@ -27,6 +27,8 @@ Na prática, a escolha do algoritmo depende do tamanho dos dados, da necessidade
 
 Merge Sort é um algoritmo de ordenação baseado na estratégia de dividir para conquistar. Ele divide a lista em partes menores, ordena cada parte e depois junta os resultados em uma única sequência ordenada.
 
+![Imagem Merge Sort](./merge-sort.gif)
+
 ```python
 def merge_sort(lista):
 	if len(lista) <= 1:
@@ -65,6 +67,8 @@ print(merge_sort(numeros))
 Bubble Sort é um algoritmo simples que percorre a lista várias vezes, comparando elementos vizinhos e trocando suas posições quando estão fora de ordem. A cada passagem, o maior elemento “sobe” para o final da lista.
 
 Embora seja fácil de entender e implementar, seu desempenho é baixo em listas grandes, com complexidade de tempo média e pior caso de **O(n²)**. Ainda assim, é útil para fins didáticos e para listas pequenas.
+
+![Image Bubble Sort](./bubble-sort.gif)
 
 ```python
 def bubble_sort(lista):
