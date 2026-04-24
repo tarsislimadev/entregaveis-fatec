@@ -31,3 +31,5 @@ print(getWeekdayByDate(['2026', '01', '01'])) # (1, 'Seg')
 - [ ] PDF com nomes dos integrantes: nome1_nome2_nome3.docx
 
 - Definição (O que é logaritmo?); Bases mais utilizadas Consequências das definições; Propriedades operatórias; Lista de exercícios com 5 questões fáceis, 5 questões de nivel medio e 5 questões mais desafiadores, de multipla escolha, com gabarito; 
+
+[Exercícios Conjuntos e Conjuntos Numéricos](./exercicios-conjuntos-e-conjuntos-numericos.pdf)
