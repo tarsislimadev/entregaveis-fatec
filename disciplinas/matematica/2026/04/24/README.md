@@ -17,3 +17,17 @@ def getWeekdayByDate(date = ['2026', '04', '24']) -> int:
 
 print(getWeekdayByDate(['2026', '01', '01'])) # (1, 'Seg')
 ```
+
+## Atividade
+
+- Entrega 28/04/2026 às 15 horas
+
+- Individual, em dupla ou em trio.
+
+- [ ] Enviar PDF para joao.eichenberger@cps.sp.gov.br
+
+- [ ] Elaborar os prompts. Copiar o prompt e a resposta.
+
+- [ ] PDF com nomes dos integrantes: nome1_nome2_nome3.docx
+
+- Definição (O que é logaritmo?); Bases mais utilizadas Consequências das definições; Propriedades operatórias; Lista de exercícios com 5 questões fáceis, 5 questões de nivel medio e 5 questões mais desafiadores, de multipla escolha, com gabarito; 
