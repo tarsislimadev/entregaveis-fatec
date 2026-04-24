@@ -221,3 +221,7 @@ Conhecer antecedente e consequente permite:
 [Regras de Associação - Pacientes](./codigo-regras-associacao/BD%20pacientes.csv)
 
 [Regras de Associação - Cardiacos](./codigo-regras-associacao/Codigo%20cardiacos.ipynb)
+
+## Atividade
+
+- Integrantes: Luiz, Pedro e eu.
