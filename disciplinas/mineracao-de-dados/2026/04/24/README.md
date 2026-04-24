@@ -189,3 +189,27 @@ Em resumo:
 
 - "Suporte" = relevância estatística (frequência).
 - "Confiança" = força preditiva da regra.
+
+## Antecedente e Consequente
+
+Em uma regra de associação `X → Y`:
+
+- "Antecedente" (`X`): o item ou conjunto de itens que vem "antes" (a condição).
+- "Consequente" (`Y`): o item ou conjunto de itens que vem "depois" (o resultado esperado).
+
+### Exemplo
+
+Regra: `Pão → Leite`
+
+- Antecedente: `Pão`
+- Consequente: `Leite`
+
+Interpretação: se o cliente compra "Pão", é provável que compre "Leite".
+
+### Por que importa
+
+Conhecer antecedente e consequente permite:
+
+- Posicionar produtos estrategicamente nas prateleiras e fazer recomendações direcionadas
+- Criar promoções cruzadas efetivas (ex.: desconto no consequente quando compra o antecedente)
+- Entender fluxos de decisão do cliente
