@@ -132,3 +132,60 @@ Interpretação: quando há **Manteiga**, há **Leite** em 100% dos casos da bas
 - Descoberta de padrões de uso/comportamento
 
 Em resumo, o Apriori transforma uma base binária em conhecimento acionável ao identificar combinações frequentes e regras úteis entre itens.
+
+## Suporte e Confiança
+
+**Suporte** e **confiança** são as duas métricas-base para avaliar regras de associação.
+
+### 1) Suporte
+
+O suporte mede **com que frequência** um item (ou conjunto de itens) aparece na base.
+
+- Para itemset `X`:
+
+`suporte(X) = número de transações que contêm X / total de transações`
+
+- Para regra `X → Y`, normalmente usamos o suporte do conjunto completo:
+
+`suporte(X → Y) = suporte(X ∪ Y)`
+
+Quanto maior o suporte, mais comum é o padrão na base.
+
+### 2) Confiança
+
+A confiança mede a **força da regra**: entre as transações que têm `X`, quantas também têm `Y`.
+
+`confiança(X → Y) = suporte(X ∪ Y) / suporte(X)`
+
+É uma estimativa de probabilidade condicional: `P(Y | X)`.
+
+### Exemplo com a base desta aula
+
+Transações:
+
+- T1 = {Pão, Leite}
+- T2 = {Pão, Café}
+- T3 = {Leite, Manteiga}
+- T4 = {Pão, Leite, Manteiga}
+
+Regra: `Leite → Pão`
+
+- `suporte(Leite ∪ Pão) = suporte({Leite, Pão}) = 2/4 = 0,50`
+- `suporte(Leite) = 3/4 = 0,75`
+- `confiança(Leite → Pão) = (2/4) / (3/4) = 2/3 = 0,67`
+
+Interpretação:
+
+- A combinação **Leite e Pão** aparece em **50%** das transações.
+- Quando há **Leite**, em **67%** dos casos também há **Pão**.
+
+### Como usar na prática
+
+- Defina um **suporte mínimo** para eliminar padrões raros.
+- Defina uma **confiança mínima** para manter regras mais confiáveis.
+- Depois, use **lift** para verificar se a associação é realmente relevante (e não apenas frequente).
+
+Em resumo:
+
+- **Suporte** = relevância estatística (frequência).
+- **Confiança** = força preditiva da regra.
