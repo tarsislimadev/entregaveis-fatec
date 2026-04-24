@@ -213,3 +213,11 @@ Conhecer antecedente e consequente permite:
 - Posicionar produtos estrategicamente nas prateleiras e fazer recomendações direcionadas
 - Criar promoções cruzadas efetivas (ex.: desconto no consequente quando compra o antecedente)
 - Entender fluxos de decisão do cliente
+
+## Arquivos
+
+[Aula 9 - Regras de Associação](./aula-9-regras-associacao.pdf)
+
+[Regras de Associação - Pacientes](./codigo-regras-associacao/BD%20pacientes.csv)
+
+[Regras de Associação - Cardiacos](./codigo-regras-associacao/Codigo%20cardiacos.ipynb)
