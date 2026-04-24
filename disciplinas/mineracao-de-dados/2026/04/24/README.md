@@ -8,12 +8,12 @@
 
 ## Bases Transacionais como Binárias
 
-Em Mineração de Dados, uma **base transacional binária** representa se um item está presente ou ausente em cada transação.
+Em Mineração de Dados, uma "base transacional binária" representa se um item está presente ou ausente em cada transação.
 
-- Cada **linha** representa uma transação (ex.: compra, cesta, registro).
-- Cada **coluna** representa um item (ex.: produto, característica, evento).
-- O valor **1** indica presença do item na transação.
-- O valor **0** indica ausência do item na transação.
+- Cada "linha" representa uma transação (ex.: compra, cesta, registro).
+- Cada "coluna" representa um item (ex.: produto, característica, evento).
+- O valor "1" indica presença do item na transação.
+- O valor "0" indica ausência do item na transação.
 
 ### Exemplo
 
@@ -36,15 +36,15 @@ Forma binária:
 
 Esse formato facilita a aplicação de técnicas como:
 
-- **Regras de associação** (ex.: Apriori)
-- **Cálculo de suporte, confiança e lift**
-- **Identificação de padrões de coocorrência** entre itens
+- "Regras de associação" (ex.: Apriori)
+- "Cálculo de suporte, confiança e lift"
+- "Identificação de padrões de coocorrência" entre itens
 
 Em resumo, transformar dados transacionais em binários padroniza a base e torna viável a descoberta de relações úteis para análise e tomada de decisão.
 
 ## Algoritmo Apriori
 
-O **Apriori** é um algoritmo clássico para descobrir **conjuntos de itens frequentes** e gerar **regras de associação** em bases transacionais.
+O "Apriori" é um algoritmo clássico para descobrir "conjuntos de itens frequentes" e gerar "regras de associação" em bases transacionais.
 
 Ele parte de uma ideia central:
 
@@ -54,10 +54,10 @@ Essa propriedade permite eliminar combinações improváveis cedo, reduzindo o e
 
 ### Conceitos principais
 
-- **Itemset**: conjunto de itens (ex.: `{Pão, Leite}`)
-- **Suporte**: frequência de ocorrência de um itemset na base
-- **Confiança**: probabilidade de `Y` ocorrer quando `X` ocorre, na regra `X → Y`
-- **Lift**: mede o quanto `X` e `Y` ocorrem juntos acima (ou abaixo) do esperado por acaso
+- "Itemset": conjunto de itens (ex.: `{Pão, Leite}`)
+- "Suporte": frequência de ocorrência de um itemset na base
+- "Confiança": probabilidade de `Y` ocorrer quando `X` ocorre, na regra `X → Y`
+- "Lift": mede o quanto `X` e `Y` ocorrem juntos acima (ou abaixo) do esperado por acaso
 
 Fórmulas:
 
@@ -67,13 +67,13 @@ Fórmulas:
 
 ### Como o Apriori funciona (passo a passo)
 
-1. **Gera candidatos de 1 item** (C1).
-2. **Filtra por suporte mínimo** para obter os frequentes de 1 item (L1).
+1. "Gera candidatos de 1 item" (C1).
+2. "Filtra por suporte mínimo" para obter os frequentes de 1 item (L1).
 3. Combina L1 para formar candidatos de 2 itens (C2).
 4. Filtra novamente por suporte mínimo para obter L2.
 5. Repete o processo para 3 itens, 4 itens, ... até não haver novos frequentes.
 6. Com os itemsets frequentes, gera regras `X → Y`.
-7. Mantém apenas regras que atendem **confiança mínima** (e, opcionalmente, lift mínimo).
+7. Mantém apenas regras que atendem "confiança mínima" (e, opcionalmente, lift mínimo).
 
 ### Exemplo rápido (com a base acima)
 
@@ -108,17 +108,17 @@ Exemplo de regra:
 	- confiança = suporte(Manteiga ∪ Leite) / suporte(Manteiga) = (2/4) / (2/4) = 1,00
 	- lift = 1,00 / 0,75 = 1,33
 
-Interpretação: quando há **Manteiga**, há **Leite** em 100% dos casos da base; além disso, essa coocorrência é maior do que o esperado ao acaso (lift > 1).
+Interpretação: quando há "Manteiga", há "Leite" em 100% dos casos da base; além disso, essa coocorrência é maior do que o esperado ao acaso (lift > 1).
 
 ### Vantagens e limitações
 
-**Vantagens**
+"Vantagens"
 
 - Simples de entender e implementar
 - Gera regras interpretáveis para negócio
 - Muito usado em análise de cesta de compras
 
-**Limitações**
+"Limitações"
 
 - Pode ficar custoso em bases grandes e densas (muitos candidatos)
 - Sensível à escolha de suporte/confiança mínimos
@@ -135,11 +135,11 @@ Em resumo, o Apriori transforma uma base binária em conhecimento acionável ao 
 
 ## Suporte e Confiança
 
-**Suporte** e **confiança** são as duas métricas-base para avaliar regras de associação.
+"Suporte" e "confiança" são as duas métricas-base para avaliar regras de associação.
 
-### 1) Suporte
+### Suporte
 
-O suporte mede **com que frequência** um item (ou conjunto de itens) aparece na base.
+O suporte mede "com que frequência" um item (ou conjunto de itens) aparece na base.
 
 - Para itemset `X`:
 
@@ -151,9 +151,9 @@ O suporte mede **com que frequência** um item (ou conjunto de itens) aparece na
 
 Quanto maior o suporte, mais comum é o padrão na base.
 
-### 2) Confiança
+### Confiança
 
-A confiança mede a **força da regra**: entre as transações que têm `X`, quantas também têm `Y`.
+A confiança mede a "força da regra": entre as transações que têm `X`, quantas também têm `Y`.
 
 `confiança(X → Y) = suporte(X ∪ Y) / suporte(X)`
 
@@ -176,16 +176,16 @@ Regra: `Leite → Pão`
 
 Interpretação:
 
-- A combinação **Leite e Pão** aparece em **50%** das transações.
-- Quando há **Leite**, em **67%** dos casos também há **Pão**.
+- A combinação "Leite e Pão" aparece em "50%" das transações.
+- Quando há "Leite", em "67%" dos casos também há "Pão".
 
 ### Como usar na prática
 
-- Defina um **suporte mínimo** para eliminar padrões raros.
-- Defina uma **confiança mínima** para manter regras mais confiáveis.
-- Depois, use **lift** para verificar se a associação é realmente relevante (e não apenas frequente).
+- Defina um "suporte mínimo" para eliminar padrões raros.
+- Defina uma "confiança mínima" para manter regras mais confiáveis.
+- Depois, use "lift" para verificar se a associação é realmente relevante (e não apenas frequente).
 
 Em resumo:
 
-- **Suporte** = relevância estatística (frequência).
-- **Confiança** = força preditiva da regra.
+- "Suporte" = relevância estatística (frequência).
+- "Confiança" = força preditiva da regra.
