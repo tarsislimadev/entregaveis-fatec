@@ -176,6 +176,124 @@ if __name__ == "__main__":
 	print(f"melhor x: {melhor_x:.4f} | melhor f(x): {melhor_f:.4f}")
 ```
 
+## Algoritmo Genetico
+
+O **Algoritmo Genético** (*Genetic Algorithm*) é uma meta-heurística inspirada na evolução biológica.
+
+Ideia central:
+- Mantemos uma **população** de soluções candidatas.
+- Avaliamos cada solução com uma **função de aptidão** (*fitness*).
+- Selecionamos as melhores para reprodução.
+- Geramos novos indivíduos com **cruzamento** e **mutação**.
+- Repetimos por várias gerações até atingir um critério de parada.
+
+Componentes principais:
+- **Representação (cromossomo)**: como codificar uma solução (vetor, string binária, etc.).
+- **Função de aptidão**: mede o quão boa é a solução.
+- **Seleção**: define quem reproduz (ex.: torneio, roleta).
+- **Cruzamento (crossover)**: combina partes de dois pais.
+- **Mutação**: pequenas alterações aleatórias para manter diversidade.
+- **Elitismo (opcional)**: preserva os melhores indivíduos para a próxima geração.
+- **Critério de parada**: número de gerações, aptidão alvo ou estagnação.
+
+Vantagens:
+- Boa exploração global do espaço de busca.
+- Não exige derivadas da função objetivo.
+- Funciona bem em problemas grandes, não lineares e combinatórios.
+
+Limitações:
+- Exige ajuste de parâmetros (taxa de mutação, tamanho da população etc.).
+- Pode convergir prematuramente sem diversidade.
+- Pode ter custo computacional alto para muitas gerações.
+
+```python
+import math
+import random
+
+# Exemplo de função objetivo (minimização):
+# queremos encontrar x que minimize f(x) = x² + 4*sin(x)
+def f(x):
+	return x**2 + 4 * math.sin(x)
+
+# Como AG costuma trabalhar com maximização de fitness,
+# convertemos custo em fitness positiva maior = melhor
+def fitness(x):
+	return 1.0 / (1.0 + f(x) - (-3.0))  # deslocamento aproximado para manter estabilidade
+
+def inicializar_populacao(tamanho=30, limite_inferior=-10, limite_superior=10):
+	return [random.uniform(limite_inferior, limite_superior) for _ in range(tamanho)]
+
+def selecao_torneio(populacao, k=3):
+	candidatos = random.sample(populacao, k)
+	# minimização: vence o menor f(x)
+	return min(candidatos, key=f)
+
+def crossover_media(pai1, pai2):
+	# cruzamento simples para variável real
+	alpha = random.random()
+	filho = alpha * pai1 + (1 - alpha) * pai2
+	return filho
+
+def mutacao_gaussiana(x, taxa_mutacao=0.2, sigma=0.3):
+	if random.random() < taxa_mutacao:
+		x += random.gauss(0, sigma)
+	return x
+
+def limitar(x, limite_inferior=-10, limite_superior=10):
+	return max(limite_inferior, min(limite_superior, x))
+
+def algoritmo_genetico(
+	tamanho_pop=40,
+	geracoes=100,
+	taxa_mutacao=0.2,
+	elitismo=2,
+	limite_inferior=-10,
+	limite_superior=10,
+):
+	pop = inicializar_populacao(tamanho_pop, limite_inferior, limite_superior)
+
+	for _ in range(geracoes):
+		# Ordena por qualidade (minimização)
+		pop.sort(key=f)
+
+		# Elitismo: mantém os melhores
+		nova_pop = pop[:elitismo]
+
+		# Gera o restante da população
+		while len(nova_pop) < tamanho_pop:
+			pai1 = selecao_torneio(pop)
+			pai2 = selecao_torneio(pop)
+
+			filho = crossover_media(pai1, pai2)
+			filho = mutacao_gaussiana(filho, taxa_mutacao=taxa_mutacao)
+			filho = limitar(filho, limite_inferior, limite_superior)
+
+			nova_pop.append(filho)
+
+		pop = nova_pop
+
+	melhor_x = min(pop, key=f)
+	melhor_f = f(melhor_x)
+	return melhor_x, melhor_f
+
+if __name__ == "__main__":
+	random.seed(42)
+	melhor_x, melhor_f = algoritmo_genetico(
+		tamanho_pop=50,
+		geracoes=120,
+		taxa_mutacao=0.25,
+		elitismo=2,
+	)
+	print("Algoritmo Genético:")
+	print(f"melhor x: {melhor_x:.4f}")
+	print(f"f(x): {melhor_f:.4f}")
+```
+
+Comparação rápida:
+- **Descida da Colina**: exploração local, rápida, pode travar em ótimos locais.
+- **Recozimento Simulado**: exploração local com aceitação probabilística de piores movimentos.
+- **Algoritmo Genético**: busca populacional/global, maior diversidade e robustez para espaços complexos.
+
 ## Avaliação
 
 - [ ] Prova Teorica, dia 18/05/2026
