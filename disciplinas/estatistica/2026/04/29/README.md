@@ -53,3 +53,39 @@ Processo básico:
 - Interpretar resultados no contexto do problema, evitando conclusões causais indevidas.
 
 Em resumo, a estatística inferencial permite transformar dados amostrais em decisões e conclusões sobre populações, sempre considerando a incerteza associada ao processo.
+
+## Probabilidade
+
+Probabilidade é o ramo da matemática que estuda a chance de ocorrência de eventos. Em estatística, a probabilidade fornece a base para modelar incertezas e justificar inferências feitas a partir de amostras.
+
+Conceitos fundamentais:
+
+- Evento: resultado ou conjunto de resultados de um experimento (ex.: tirar um 6 em um dado).
+- Espaço amostral: conjunto de todos os resultados possíveis.
+- Probabilidade de um evento: número entre 0 e 1 que representa a chance do evento ocorrer. Eventos impossíveis têm probabilidade 0; certos têm probabilidade 1.
+- Probabilidades condicionais: probabilidade de A dado B, escrita P(A|B), utilizada quando há informação adicional.
+- Independência: A e B são independentes se P(A∩B) = P(A)P(B).
+
+Leis e regras úteis:
+
+- Regra da adição: para eventos mutuamente exclusivos, P(A ∪ B) = P(A) + P(B).
+- Regra do produto: P(A ∩ B) = P(A)P(B|A).
+- Teorema de Bayes: P(A|B) = P(B|A)P(A) / P(B), para atualizar crenças com nova evidência.
+
+Distribuições de probabilidade:
+
+- Discretas: por exemplo, binomial (número de sucessos em n tentativas) e geométrica.
+- Contínuas: por exemplo, normal (gaussiana), exponencial.
+
+Medidas importantes:
+
+- Esperança (valor esperado): média teórica de uma variável aleatória.
+- Variância e desvio padrão: quantificam dispersão em torno da esperança.
+
+Aplicações em estatística inferencial:
+
+- Modelagem de incerteza em estimativas e testes de hipóteses.
+- Cálculo de p-valores e níveis de significância com base em distribuições teóricas.
+- Uso de probabilidades condicionais e Bayes para inferência bayesiana.
+
+Compreender probabilidade é essencial para interpretar resultados estatísticos e construir modelos que reflitam a variabilidade dos dados.
