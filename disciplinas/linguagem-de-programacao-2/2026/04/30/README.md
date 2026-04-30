@@ -147,3 +147,43 @@ Quando você acessa `http://127.0.0.1:8000/docs`:
 ### Mnemônico
 
 Uma forma comum de lembrar as 7 camadas de cima para baixo: "All People Seem To Need Data Processing" (Todas as Pessoas Parecem Precisar de Processamento de Dados).
+
+## uvicorn main:app --reload
+
+Este comando inicia um servidor de desenvolvimento usando o Uvicorn, um servidor ASGI (Asynchronous Server Gateway Interface) de alta performance.
+
+### Breakdown do comando
+
+- uvicorn: Servidor ASGI que executa aplicações FastAPI.
+- main: Nome do arquivo Python (main.py) que contém a aplicação.
+- app: Nome da instância da aplicação FastAPI criada no arquivo.
+- --reload: Flag que ativa o "hot reload", recarregando o servidor automaticamente quando há mudanças no código.
+
+### Uso prático
+
+```bash
+uvicorn main:app --reload
+```
+
+Saída esperada:
+```
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+INFO:     Started server process [12345]
+INFO:     Waiting for application startup.
+```
+
+### Opções adicionais úteis
+
+- `--host 0.0.0.0`: Permite acessar o servidor de outros computadores na rede.
+- `--port 8080`: Muda a porta padrão (8000) para outra.
+- `--workers 4`: Executa múltiplos processos workers para maior concorrência.
+- `--log-level debug`: Define o nível de logging (debug, info, warning, error).
+
+### Exemplo com opções
+
+```bash
+uvicorn main:app --reload \
+  --host 0.0.0.0 --port 8080
+```
+
+O `--reload` é ideal para desenvolvimento, mas deve ser desativado em produção por questões de segurança e performance.
