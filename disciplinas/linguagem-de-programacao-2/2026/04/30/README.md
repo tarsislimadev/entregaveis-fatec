@@ -45,3 +45,51 @@ uvicorn main:app --reload
 - "Models com Pydantic": definem e validam o formato dos dados.
 
 FastAPI é ideal para projetos acadêmicos e profissionais que exigem APIs bem estruturadas, documentação clara e desenvolvimento ágil.
+
+## Como dois processos (PIDs) trocam mensagens?
+
+Dois processos podem trocar mensagens através de diferentes mecanismos de comunicação entre processos (IPC - Inter-Process Communication):
+
+### 1. Pipes (Tubos)
+- Comunicação unidirecional entre processos relacionados (parent-child).
+- Um processo escreve dados, outro lê.
+- Exemplo: `cat file.txt | grep palavra`
+
+### 2. Named Pipes (FIFOs)
+- Pipes nomeados que permitem comunicação entre processos não relacionados.
+- Criados no sistema de arquivos com `mkfifo`.
+- Um processo escreve, outro lê pelo nome da pipe.
+
+### 3. Sockets
+- Bidirecionais, permitem comunicação entre processos locais ou remotos.
+- Unix sockets: comunicação local eficiente.
+- TCP/IP sockets: comunicação em rede.
+
+### 4. Message Queues
+- Fila de mensagens onde processos enviam e recebem estruturas de dados.
+- Cada mensagem tem tipo e conteúdo.
+- Sistema gerencia a fila automaticamente.
+
+### 5. Shared Memory (Memória Compartilhada)
+- Ambos os processos acessam a mesma região de memória.
+- Muito rápido, mas requer sincronização (mutexes, semáforos).
+- Alto risco se não sincronizado corretamente.
+
+### 6. Signals (Sinais)
+- Notificações assíncronas entre processos.
+- Limitadas a sinais predefinidos (SIGTERM, SIGUSR1, etc.).
+- Não carregam dados complexos.
+
+### Exemplo prático com Pipes:
+```python
+import os
+import subprocess
+
+# Criando dois processos que se comunicam via pipe
+p1 = subprocess.Popen(['echo', 'mensagem'], stdout=subprocess.PIPE)
+p2 = subprocess.Popen(['cat'], stdin=p1.stdout)
+p1.stdout.close()
+p2.wait()
+```
+
+A escolha do mecanismo depende de requisitos como performance, complexidade dos dados e se a comunicação é local ou remota.
