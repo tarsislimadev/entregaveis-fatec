@@ -187,3 +187,49 @@ uvicorn main:app --reload \
 ```
 
 O `--reload` é ideal para desenvolvimento, mas deve ser desativado em produção por questões de segurança e performance.
+
+## Path Parameters
+
+Path parameters são partes da rota que representam valores variáveis, usados para identificar recursos.
+
+Exemplo em FastAPI:
+
+```python
+from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.get("/users/{user_id}")
+def get_user(user_id: int):
+  return {"user_id": user_id}
+```
+
+Notas:
+
+- No exemplo, `{user_id}` no caminho vira parâmetro `user_id` na função.
+- Tipagem (como `int`) faz validação automática e conversão.
+- Path parameters são obrigatórios por padrão.
+
+## Query Parameters
+
+Query parameters são pares chave-valor anexados à URL após `?`, usados para filtros, paginação e opções opcionais.
+
+Exemplo em FastAPI:
+
+```python
+from typing import Optional
+from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.get("/items/")
+def list_items(limit: int = 10, q: Optional[str] = None):
+  return {"limit": limit, "q": q}
+```
+
+Uso na URL: `/items/?limit=5&q=texto`.
+
+Notas:
+- Parâmetros de query são opcionais se tiverem valor default.
+- Tipagem também valida e converte valores.
+- São ideais para filtros, ordenação e paginação.
