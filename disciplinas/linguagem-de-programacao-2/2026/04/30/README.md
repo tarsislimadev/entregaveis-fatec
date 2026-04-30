@@ -233,3 +233,7 @@ Notas:
 - Parâmetros de query são opcionais se tiverem valor default.
 - Tipagem também valida e converte valores.
 - São ideais para filtros, ordenação e paginação.
+
+## Dica Importante
+
+- Anonimize dados em respostas HTTP.
