@@ -93,3 +93,57 @@ p2.wait()
 ```
 
 A escolha do mecanismo depende de requisitos como performance, complexidade dos dados e se a comunicação é local ou remota.
+
+## Modelo OSI
+
+O Modelo OSI (Open Systems Interconnection) é um framework que descreve como os dados são transmitidos através de redes. Ele divide a comunicação em 7 camadas, cada uma com funções específicas.
+
+### As 7 Camadas do Modelo OSI
+
+1. Camada Física (Layer 1)
+- Transmissão de bits brutos pelo meio físico (cabos, fibra óptica, ondas de rádio).
+- Inclui conectores, voltagem, frequência, sincronização.
+
+2. Camada de Enlace de Dados (Layer 2)
+- Estabelece comunicação entre dispositivos na mesma rede local.
+- MAC addresses, switches, frames de dados.
+- Exemplos: Ethernet, Wi-Fi.
+
+3. Camada de Rede (Layer 3)
+- Roteamento de pacotes entre redes diferentes.
+- IP addresses (IPv4, IPv6), routers.
+- Determina o melhor caminho para os dados.
+
+4. Camada de Transporte (Layer 4)
+- Controla a entrega fim-a-fim dos dados.
+- TCP (confiável) e UDP (rápido).
+- Gerencia portas, fluxo de dados e confiabilidade.
+
+5. Camada de Sessão (Layer 5)
+- Estabelece, mantém e encerra conexões (sessões).
+- Sincronização e gerenciamento de diálogos entre aplicações.
+
+6. Camada de Apresentação (Layer 6)
+- Traduz, criptografa e comprime dados.
+- Conversão entre diferentes formatos (ASCII, Unicode, JPEG, etc.).
+- SSL/TLS para criptografia.
+
+7. Camada de Aplicação (Layer 7)
+- Interface direta com o usuário e aplicações.
+- Protocolos: HTTP, HTTPS, FTP, SMTP, DNS, SSH.
+- FastAPI funciona nesta camada.
+
+### Exemplo de fluxo de comunicação
+
+Quando você acessa `http://127.0.0.1:8000/docs`:
+1. Camada 7: Navegador envia requisição HTTP.
+2. Camada 6: Dados são formatados e criptografados (se HTTPS).
+3. Camada 5: Sessão é estabelecida.
+4. Camada 4: TCP garante entrega confiável na porta 8000.
+5. Camada 3: IP roteia para o endereço local.
+6. Camada 2: Ethernet entrega o frame para a interface de rede.
+7. Camada 1: Bits são transmitidos pelo cabo ou Wi-Fi.
+
+### Mnemônico
+
+Uma forma comum de lembrar as 7 camadas de cima para baixo: "All People Seem To Need Data Processing" (Todas as Pessoas Parecem Precisar de Processamento de Dados).
