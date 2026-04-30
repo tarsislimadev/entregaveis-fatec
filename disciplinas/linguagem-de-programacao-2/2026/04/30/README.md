@@ -237,3 +237,15 @@ Notas:
 ## Dica Importante
 
 - Anonimize dados em respostas HTTP.
+
+## Atividade
+
+- [ ] Em Python, desenvolva um "Spotify" (reprodutor de músicas)
+
+[PDF no GitHub](https://github.com/orlandosaraivajr/FATEC_1SEM26_ED/blob/main/Projeto2.pdf)
+
+[Sistema Playlist](./sistema_playlist.pdf)
+
+[Repositorio GitHub](https://github.com/tarsislimadev/fatec-ed-playlist)
+
+- Entrega dia 14/05
