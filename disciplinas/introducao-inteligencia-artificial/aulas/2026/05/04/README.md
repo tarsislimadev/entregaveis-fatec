@@ -167,6 +167,22 @@ Resumo:
 - **Uso mais comum**: regressão
 - **Limitação**: não adiciona não linearidade ao modelo
 
+### Função de Ativação ReLU
+
+A ReLU (Rectified Linear Unit) é uma das funções de ativação mais populares em redes neurais modernas. Sua fórmula é simples: `f(x) = max(0, x)`, o que significa que ela retorna o valor x se ele for positivo, caso contrário retorna zero.
+
+A principal vantagem da ReLU é sua eficiência computacional e sua capacidade de mitigar o problema do gradiente saturado que afeta a sigmóide. Além disso, ela permite que a rede aprenda padrões complexos através da não linearidade introduzida.
+
+Características principais:
+
+- **Fórmula**: `f(x) = max(0, x)`
+- **Tipo de saída**: valor não negativo
+- **Uso mais comum**: camadas ocultas em redes profundas
+- **Vantagem**: simples, computacionalmente eficiente e evita saturação do gradiente
+- **Desvantagem**: problema dos neurônios mortos (neurônios que ficam inertes com entrada negativa)
+
+Variantes como Leaky ReLU `f(x) = max(αx, x)` (com α pequeno) e Parametric ReLU resolvem o problema dos neurônios mortos permitindo um pequeno gradiente negativo.
+
 ## Função de Custo
 
 A função de custo (ou função de perda) quantifica o quão ruim é a previsão do modelo em comparação com os valores reais. Durante o treinamento, o objetivo é minimizar essa função ajustando os pesos da rede usando algoritmos de otimização (por exemplo, gradiente descendente).
@@ -241,3 +257,7 @@ Limitações:
 - Requerem ajuste de parâmetros (tamanho da população, taxas de crossover e mutação).
 
 Freqüentemente, algoritmos genéticos são usados em combinação com outras técnicas (hibridização) ou como etapa de busca global seguida de refinamento local (por exemplo, gradiente descendente) para obter soluções de alta qualidade.
+
+## 
+
+
