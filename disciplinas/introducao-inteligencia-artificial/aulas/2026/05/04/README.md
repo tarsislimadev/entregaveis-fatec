@@ -272,3 +272,9 @@ Limitações:
 - Requerem ajuste de parâmetros (tamanho da população, taxas de crossover e mutação).
 
 Freqüentemente, algoritmos genéticos são usados em combinação com outras técnicas (hibridização) ou como etapa de busca global seguida de refinamento local (por exemplo, gradiente descendente) para obter soluções de alta qualidade.
+
+## Atividade
+
+Entrega dia 11/05/2026
+
+https://github.com/daviduarte/introducao_a_inteligencia_artificial_fatec_2026/blob/main/AUla11/Lista_de_Exerc%C3%ADcios_Fate.pdf
