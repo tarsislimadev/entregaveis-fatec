@@ -22,6 +22,22 @@ O Perceptron é usado principalmente para problemas de classificação linear, o
 
 O algoritmo de treinamento do Perceptron ajusta os pesos iterativamente para minimizar os erros de classificação. Uma limitação importante é que o Perceptron não pode resolver problemas linearmente inseparáveis, como o problema XOR, o que levou ao desenvolvimento de redes neurais multi-camadas (também chamadas de Multilayer Perceptron ou MLP).
 
+### Entradas
+
+As entradas são os dados que o perceptron recebe como input. Cada entrada representa uma característica ou atributo do problema que se deseja resolver. Por exemplo, em um problema de classificação de imagens, as entradas podem ser os valores dos pixels. Em um problema de classificação de flores, as entradas podem ser medidas como comprimento e largura das pétalas.
+
+### Saidas
+
+A saída é o resultado final produzido pelo perceptron após processar todas as entradas. Geralmente, a saída é um valor discreto, como `0` ou `1`, ou pode ser um valor contínuo dependendo da função de ativação utilizada. A saída representa a classificação ou predição que o perceptron faz com base nos dados de entrada.
+
+### Vies (bias)
+
+O viés (bias) é um parâmetro adicional que é adicionado à soma ponderada das entradas. Ele permite que o perceptron aprenda um deslocamento independente dos pesos, facilitando o ajuste da função de ativação. O viés é essencial porque, sem ele, a reta de decisão seria forçada a passar pela origem, limitando a capacidade do modelo de se adaptar aos dados.
+
+### Pesos
+
+Os pesos são parâmetros que multiplicam cada entrada, determinando a importância ou influência de cada uma delas na decisão final do perceptron. Pesos maiores indicam que a entrada correspondente tem mais impacto na saída. Durante o treinamento, os pesos são ajustados iterativamente para minimizar o erro de classificação. O algoritmo de aprendizado do perceptron modifica os pesos quando ocorrem erros, movendo-os em direção a valores que melhoram a classificação.
+
 ### Exemplo
 
 Considere um perceptron com duas entradas, `x1` e `x2`, pesos `w1` e `w2`, e um viés `b`.
