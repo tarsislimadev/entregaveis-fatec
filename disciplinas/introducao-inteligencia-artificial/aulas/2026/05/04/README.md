@@ -167,6 +167,21 @@ Resumo:
 - **Uso mais comum**: regressão
 - **Limitação**: não adiciona não linearidade ao modelo
 
+### Função de Ativação Sigmoid
+
+A sigmóide é uma função de ativação muito conhecida por produzir saídas entre 0 e 1. Sua fórmula é `f(x) = 1 / (1 + e^-x)`. Isso faz com que ela seja útil para representar probabilidades, já que valores próximos de 0 indicam baixa ativação e valores próximos de 1 indicam alta ativação.
+
+Quando a entrada é muito negativa, a saída fica próxima de 0; quando a entrada é muito positiva, a saída se aproxima de 1. No entanto, nas regiões extremas a curva “satura”, ou seja, pequenas mudanças na entrada geram variações muito pequenas na saída. Isso pode dificultar o aprendizado em redes mais profundas, pois o gradiente tende a diminuir bastante durante o treinamento.
+
+Por esse motivo, a sigmóide foi muito usada em redes mais antigas e ainda aparece bastante na camada de saída de problemas de classificação binária. Nesses casos, ela é combinada com funções de custo como Binary Cross-Entropy, permitindo interpretar o resultado como a probabilidade de uma classe.
+
+Resumo:
+
+- **Fórmula**: `f(x) = 1 / (1 + e^-x)`
+- **Intervalo de saída**: entre 0 e 1
+- **Uso mais comum**: saída em classificação binária
+- **Limitação**: sofre com saturação do gradiente e pode tornar o treinamento mais lento
+
 ### Função de Ativação ReLU
 
 A ReLU (Rectified Linear Unit) é uma das funções de ativação mais populares em redes neurais modernas. Sua fórmula é simples: `f(x) = max(0, x)`, o que significa que ela retorna o valor x se ele for positivo, caso contrário retorna zero.
@@ -257,7 +272,3 @@ Limitações:
 - Requerem ajuste de parâmetros (tamanho da população, taxas de crossover e mutação).
 
 Freqüentemente, algoritmos genéticos são usados em combinação com outras técnicas (hibridização) ou como etapa de busca global seguida de refinamento local (por exemplo, gradiente descendente) para obter soluções de alta qualidade.
-
-## 
-
-
