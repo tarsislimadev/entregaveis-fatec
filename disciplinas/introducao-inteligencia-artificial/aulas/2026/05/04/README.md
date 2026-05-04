@@ -135,3 +135,92 @@ Esses modelos podem ser usados para prever resultados, classificar informações
 Alguns exemplos são regressão linear, regressão logística, Naive Bayes e modelos de séries temporais. Eles servem de base para diversas técnicas de aprendizado de máquina.
 
 Em geral, o processo envolve coleta de dados, análise, ajuste do modelo, validação e uso do modelo para novas previsões.
+
+## Função de Ativação
+
+Funções de ativação são funções matemáticas aplicadas à saída de um neurônio (a soma ponderada das entradas mais o viés) para introduzir não linearidade no modelo. Sem elas, uma rede neural composta apenas por combinações lineares seria equivalente a uma única transformação linear, limitando severamente sua capacidade de representar relações complexas.
+
+Exemplos comuns:
+
+- Degrau (step): saída 0 ou 1 dependendo se a entrada ultrapassa um limiar — usada em perceptrons simples.
+- Sigmóide (σ): mapeia valores para (0,1), útil em saídas probabilísticas, mas pode sofrer com gradientes pequenos (vanishing gradient).
+- Tanh: similar à sigmóide, mapeia para (-1,1), centralizada em zero.
+- ReLU (Rectified Linear Unit): f(x)=max(0,x). Simples e eficiente, reduz o problema do gradiente saturado e é muito usada em redes profundas.
+- Leaky ReLU / Parametric ReLU: variantes que permitem um pequeno gradiente para x<0, mitigando neurônios mortos.
+
+A escolha da função de ativação impacta treinamento, velocidade de convergência e desempenho final, sendo comum usar ReLU nas camadas ocultas e sigmóide/softmax na camada de saída conforme a tarefa.
+
+## Função de Custo
+
+A função de custo (ou função de perda) quantifica o quão ruim é a previsão do modelo em comparação com os valores reais. Durante o treinamento, o objetivo é minimizar essa função ajustando os pesos da rede usando algoritmos de otimização (por exemplo, gradiente descendente).
+
+Exemplos comuns:
+
+- Erro quadrático médio (MSE): (1/n) * Σ(y_true - y_pred)^2. Muito usado em regressão.
+- Entropia cruzada (Cross-Entropy): usada em classificação; penaliza fortemente previsões confiantes e erradas.
+- Binary Cross-Entropy (Log Loss): para classificação binária.
+- Categorical Cross-Entropy com Softmax: para classificação multiclasse.
+
+Além da função de custo, frequentemente se adicionam termos de regularização (L1, L2) para evitar overfitting, penalizando pesos grandes.
+
+O gradiente da função de custo em relação aos pesos é calculado via backpropagation e usado pelo otimizador para atualizar os pesos em direção a um mínimo (local ou global) da função de custo.
+
+## Gradiente Descendente
+
+Gradiente descendente é um método iterativo de otimização usado para minimizar a função de custo ajustando os parâmetros (pesos) do modelo. A ideia básica é seguir o negativo do gradiente da função de custo em relação aos parâmetros, pois o gradiente aponta na direção do aumento mais rápido; então mover-se na direção oposta reduz o valor da função.
+
+Passos fundamentais:
+
+1. Inicializar os pesos (aleatoriamente ou com heurísticas).
+2. Calcular o gradiente da função de custo em relação aos pesos: ∇J(w).
+3. Atualizar os pesos: w := w - η * ∇J(w), onde η é a taxa de aprendizado (learning rate).
+4. Repetir até convergência (número de iterações, tolerância do gradiente ou validação).
+
+Variedades importantes:
+
+- Batch Gradient Descent: calcula o gradiente usando todo o conjunto de treino em cada passo. Converge de forma estável, mas pode ser lento e custoso em memória para grandes conjuntos.
+- Stochastic Gradient Descent (SGD): atualiza os pesos a cada exemplo de treino. Mais ruidoso, mas pode escapar de mínimos locais e permite treino online.
+- Mini-batch Gradient Descent: compromisso entre batch e SGD; usa pequenos lotes (batches) por atualização. Muito usado na prática.
+
+Melhorias e técnicas relacionadas:
+
+- Momentium: acumula uma média móvel dos gradientes para acelerar convergência e reduzir oscilações.
+- RMSProp / AdaGrad / Adam: algoritmos adaptativos que ajustam a taxa de aprendizado por parâmetro com base em históricos de gradientes; Adam é amplamente usado por combinar momentum e escalamento adaptativo.
+- Decaimento da taxa de aprendizado e schedules: reduzir η ao longo do tempo para refinamento fino.
+
+Cuidados:
+
+- Escolha de uma taxa de aprendizado apropriada é crítica: muito grande causa divergência; muito pequena torna o treino lento.
+- Funções de custo não convexas (redes profundas) têm muitos mínimos locais ou platôs; otimização prática depende de inicialização, regularização e algoritmo usado.
+
+## Algoritmo Genetico
+
+Algoritmos genéticos (AG) são métodos de otimização inspirados na evolução natural. Eles mantêm uma população de soluções candidatas (indivíduos), e iterativamente aplicam operadores inspirados em seleção natural para evoluir soluções melhores.
+
+Componentes principais:
+
+- Representação (cromossomo): codificação da solução (vetor binário, real, permutação etc.).
+- Função de aptidão (fitness): avalia quão boa é cada solução segundo o objetivo a ser otimizado.
+- Seleção: escolhe indivíduos para reprodução com base na aptidão (roleta, torneio, rank).
+- Cruzamento (crossover): combina partes de dois (ou mais) pais para gerar novos filhos, promovendo recombinação de características.
+- Mutação: altera aleatoriamente partes do indivíduo para introduzir diversidade e evitar convergência prematura.
+- Substituição/Elitismo: decide como a nova população é formada (preservando os melhores indivíduos para a próxima geração).
+
+Fluxo básico:
+
+1. Inicializar população aleatória.
+2. Avaliar a aptidão de cada indivíduo.
+3. Repetir: selecionar pais → aplicar crossover → aplicar mutação → avaliar filhos → formar nova população.
+4. Parar quando atingir critério (n.º de gerações, aptidão satisfatória, tempo).
+
+Aplicações e vantagens:
+
+- Úteis para problemas de otimização complexos, não lineares e multimodais onde gradientes não estão disponíveis ou são difíceis de computar.
+- Podem explorar amplamente o espaço de busca e escapar de mínimos locais.
+
+Limitações:
+
+- Podem ser computacionalmente caros (avaliações de aptidão custosas e necessidade de manter população).
+- Requerem ajuste de parâmetros (tamanho da população, taxas de crossover e mutação).
+
+Freqüentemente, algoritmos genéticos são usados em combinação com outras técnicas (hibridização) ou como etapa de busca global seguida de refinamento local (por exemplo, gradiente descendente) para obter soluções de alta qualidade.
