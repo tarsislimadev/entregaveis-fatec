@@ -150,6 +150,23 @@ Exemplos comuns:
 
 A escolha da função de ativação impacta treinamento, velocidade de convergência e desempenho final, sendo comum usar ReLU nas camadas ocultas e sigmóide/softmax na camada de saída conforme a tarefa.
 
+### Função de Ativação Linear ou Identidade
+
+A função de ativação linear, também chamada de função identidade, retorna a própria entrada sem aplicar transformação não linear. Em termos matemáticos, pode ser representada por `f(x) = x`.
+
+Isso significa que, se o neurônio receber um valor `x`, a saída será exatamente esse mesmo valor. Diferente de funções como degrau, sigmóide ou ReLU, a função linear não restringe a saída a um intervalo específico nem cria curvatura no modelo.
+
+Na prática, ela é mais usada na camada de saída de problemas de regressão, em que o objetivo é prever valores contínuos, como preço, temperatura ou quantidade. Nesse contexto, permitir que a saída assuma qualquer valor real é importante para representar corretamente o resultado esperado.
+
+Por outro lado, usar apenas funções lineares em todas as camadas de uma rede neural não aumenta a capacidade de aprendizado, porque a composição de funções lineares continua sendo uma função linear. Por isso, ela não é indicada nas camadas ocultas quando se quer que a rede aprenda padrões complexos.
+
+Resumo:
+
+- **Fórmula**: `f(x) = x`
+- **Tipo de saída**: valor contínuo
+- **Uso mais comum**: regressão
+- **Limitação**: não adiciona não linearidade ao modelo
+
 ## Função de Custo
 
 A função de custo (ou função de perda) quantifica o quão ruim é a previsão do modelo em comparação com os valores reais. Durante o treinamento, o objetivo é minimizar essa função ajustando os pesos da rede usando algoritmos de otimização (por exemplo, gradiente descendente).
