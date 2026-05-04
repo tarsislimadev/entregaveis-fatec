@@ -1,5 +1,7 @@
 # Introdução à Inteligencia Artificial - 2026/05/04
 
+"A partir da quarta dimensão não é possivel desenhar o plano, pois este é abstrato", por Professor.
+
 ## Redes Neurais
 
 Redes neurais são modelos computacionais inspirados no funcionamento do cérebro humano. Elas são compostas por neurônios artificiais organizados em camadas, que recebem entradas, processam essas informações com pesos e funções de ativação e produzem uma saída.
@@ -123,3 +125,13 @@ Em uma rede neural, as entradas podem ser representadas como vetores, os pesos c
 ### Importância
 
 Sem álgebra linear, seria muito difícil descrever matematicamente como os algoritmos de IA aprendem, transformam dados e fazem previsões. Por isso, ela é essencial para o estudo de aprendizado de máquina, redes neurais e ciência de dados.
+
+## Modelos Estatisticos
+
+Modelos estatísticos são métodos matemáticos que usam dados para descrever padrões, estimar probabilidades e fazer previsões. Em inteligência artificial, eles ajudam a identificar relações entre variáveis e a tomar decisões com base em exemplos anteriores.
+
+Esses modelos podem ser usados para prever resultados, classificar informações, medir incerteza e apoiar decisões automatizadas.
+
+Alguns exemplos são regressão linear, regressão logística, Naive Bayes e modelos de séries temporais. Eles servem de base para diversas técnicas de aprendizado de máquina.
+
+Em geral, o processo envolve coleta de dados, análise, ajuste do modelo, validação e uso do modelo para novas previsões.
