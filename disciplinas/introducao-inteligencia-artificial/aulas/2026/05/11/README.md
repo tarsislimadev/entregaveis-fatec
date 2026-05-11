@@ -144,3 +144,152 @@ No exemplo do aspirador 4x4:
 - Mutação = altera pequenas partes do caminho.
 
 Assim, o Algoritmo Genético evolui os caminhos da população até encontrar trajetórias cada vez melhores para o aspirador alcançar a sujeira.
+
+## Algoritmo Descida da Colina
+
+### Descida da Colina no problema do aspirador 4x4
+
+O **Algoritmo Descida da Colina (Hill Climbing)** é uma estratégia de busca local.
+Ele parte de uma solução inicial e tenta melhorá-la passo a passo, sempre escolhendo um vizinho que tenha avaliação melhor.
+
+No mesmo mundo do aspirador 4x4:
+
+- Estado = posição atual do aspirador no grid.
+- Vizinhos = posições alcançáveis com um movimento (cima, baixo, esquerda, direita).
+- Função de avaliação = distância até a sujeira (quanto menor, melhor).
+
+---
+
+### Ideia principal
+
+1. Começa em uma posição inicial.
+2. Avalia os vizinhos possíveis.
+3. Vai para o vizinho com menor custo (mais perto da sujeira).
+4. Repete até não encontrar vizinho melhor.
+
+Quando não existe melhora, o algoritmo para.
+
+---
+
+### Desenho 1: ambiente 4x4
+
+![desenho-01.png](./desenho-01.png)
+
+Legenda:
+
+- `A` = aspirador
+- `S` = sujeira (alvo)
+- `.` = célula vazia
+
+Estado inicial:
+
+```text
+	y→ 0   1   2   3
+x
+0     .   .   .   .
+1     .   A   .   .
+2     .   .   .   .
+3     .   .   .   S
+```
+
+Exemplo: `A = (1,1)` e `S = (3,3)`.
+
+---
+
+### Desenho 2: escolha do melhor vizinho
+
+![desenho-02.png](./desenho-02.png)
+
+Vizinhos de `(1,1)`:
+
+- cima `(0,1)`
+- baixo `(2,1)`
+- esquerda `(1,0)`
+- direita `(1,2)`
+
+Se usamos distância até `S(3,3)`, os vizinhos mais promissores são `(2,1)` e `(1,2)`.
+
+```text
+Passo atual: (1,1)
+
+				(0,1)
+					↑
+(1,0)  ←    (1,1)    →  (1,2)  [melhor]
+					↓
+				(2,1)  [melhor]
+```
+
+O algoritmo escolhe um dos melhores e avança.
+
+---
+
+### Desenho 3: caminho de melhoria local
+
+![desenho-03.png](./desenho-03.png)
+
+Um possível percurso:
+
+```text
+(1,1) -> (1,2) -> (2,2) -> (2,3) -> (3,3)
+```
+
+Visualmente:
+
+```text
+	y→ 0   1   2   3
+x
+0     .   .   .   .
+1     .   A   *   .
+2     .   .   *   *
+3     .   .   .   S
+```
+
+`*` indica posições escolhidas por melhoria local.
+
+---
+
+### Ponto importante: ótimo local
+
+![otimo-local.png](./otimo-local.png)
+
+A Descida da Colina pode parar em uma solução que é melhor que as vizinhas imediatas, mas não é a melhor global.
+
+Desenho conceitual:
+
+```text
+Avaliação
+  ^
+  |               ___ topo global
+  |      ___
+  |  ___/   \___
+  |_/             \____
+  +--------------------------> estados
+		^
+		pode parar aqui (ótimo local)
+```
+
+No grid, isso acontece quando todos os movimentos possíveis pioram a avaliação atual, mesmo que exista um caminho melhor mais adiante.
+
+---
+
+### Vantagens
+
+- Simples de implementar.
+- Rápido para encontrar melhorias locais.
+- Usa pouca memória.
+
+### Limitações
+
+- Pode ficar preso em ótimo local.
+- Pode parar em platôs (vizinhos com mesma avaliação).
+- Depende da posição inicial.
+
+### Resumo
+
+No exemplo do aspirador 4x4, a Descida da Colina:
+
+- avalia os movimentos vizinhos;
+- escolhe sempre o que mais aproxima da sujeira;
+- repete até não haver melhora.
+
+É uma busca gulosa local: eficiente e prática, mas sem garantia de encontrar sempre a melhor solução global.
