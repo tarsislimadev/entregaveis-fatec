@@ -12,7 +12,7 @@ Encontramos, entre as Perguntas Avaliativas, uma pergunta com todas as alternati
 
 Para finalizar a prova, selecionei uma alternativa errada dentre as possíveis esperando responder corretamente após a verificação do responsável.
 
-Você podem verificar a pergunta em questão?
+Você pode verificar a pergunta?
 
 Aguardo.
 
